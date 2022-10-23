@@ -1,0 +1,153 @@
+{% extends 'app/layout/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<header class="header">
+    <img src="https://images.pexels.com/photos/3727469/pexels-photo-3727469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+    <div class="header-text">
+        <h1>Réservez une prestation</h1>
+      
+       <small>Réserver une prestation et payer en espèce ou par mobile money</small>
+    </div>
+</header>
+<div class="container-box " >
+    <h1>Et pour que le professionnel puisse intervenir :</h1>
+    <small>Les champs comportant un <span>(*)</span> sont obligatoires.</small>
+    <form class="form" id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="input">
+            <label for="address">Où le professionnel doit-il intervenir ?</label>
+            <div class="input-items">
+                <input type="text" placeholder="Address *" v-model="address" id="address" name="address" >
+            </div>
+        </div>
+        <div class="input">
+            <label>L'intervention est'elle urgente ? :</label>
+            <div class="input-items">
+                <select  name="paiementType" v-model="take_intervention" >
+                    <option value="" selected>Sélectionner le type de l'intervention (*)</option>
+                    <option value="urgence"> <a href="#"  @click.prevent="test">En urgence</a> </option>
+                    <option value="RDV">Rendez-vous</option>
+                </select>
+            </div>
+        </div>
+        <div class="input" v-if = "take_intervention">
+            <label>À quelle date et heure doit-il intervenir ? </label>
+            <div class="input-items">
+                <input type="date" v-model="date" name="date">
+                <input type="time" v-model="time" name="heure">
+            </div>
+        </div>
+       
+
+        <div class="input">
+            <label>Nombre de professionnel :</label>
+            <small>Choisissez le notre de professionnel </small>
+            <div class="input-items">
+                <select  name="paiementType" v-model="nbr_pro">
+                    <option value="" selected>Choisissez le notre de professionnel (*)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input">
+            <label>Pour que nous puissions mieux suivre votre intervention :</label>
+            
+            <div class="input-items">
+                <input type="text" v-model="name" placeholder="Noms et Prenoms *" name="nomComplet" >
+                <input type="tel" v-model="phone" placeholder="Contact Téléphonique *" >
+            </div>
+            <div class="input-items">
+                
+                <input type="email" v-model="email" placeholder="Email *" name="email" >
+                <textarea type="text" v-model="message" cols="50" rows="2" placeholder="Détails supplémentaires" name="details"></textarea>
+            </div>
+        </div>
+        {% comment "" %}
+            <div class="input">
+                <label>Code Promo :</label>
+                <small>Montant de la prestation : <span>300000 FCFA</span></small>
+                <div class="input-items" style="flex-direction: row !important">
+                    <input type="text" placeholder="Ex: ARTNCODEP-000000000000000" style="margin: 0; width: calc(70%);">
+                    <button onclick="return false" class="codepromo">valider</button>
+                </div>
+            </div>
+        {% endcomment %}
+        <div class="input">
+            <label>Concernant le règlement :</label>
+            <small>Choisissez votre mode de paiement</small>
+            <div class="input-items">
+                <select  name="paiementType" v-model="money" >
+                    <option value="" selected>Sélectionner le mode de paiement (*)</option>
+                    <option value="OM">Orange money</option>
+                    <option value="MTN">MTN money</option>
+                    <option value="Moov">Flooz money</option>
+                    <option value="Wave">Wave money</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="condition">
+            <input type="checkbox" v-model="confirm" name="acceptCondition">
+            <span>J'accepte les <span>conditions générales d'utilisation</span></span>
+        </div>
+        <div class="submit" align=center>
+            <button type="submit" @click.prevent='sendData'>
+                valider
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+
+<!-- if(!this.name){
+            this.errors.push("veuillez saisir votre nom !!!")
+          }
+
+          if(this.address == ' '){
+            Swal.fire({
+              icon: 'error',
+              title: 'Your work has been saved',
+              text: 'veuillez saisir votre nom'
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          else{
+
+          
+          let myForm = new FormData();
+          myForm.append('payment',JSON.stringify(this.commandes))
+
+          axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
+          axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN'
+          axios.post("{% url 'postData' %}", myForm, {})
+              .then((response) =>{
+                if(response.data.success == true){
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                }
+                else{
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                }
+              })
+
+          }
+        } -->

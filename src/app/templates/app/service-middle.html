@@ -1,0 +1,56 @@
+{% extends 'app/layout/base.html' %}
+{% load static %}
+{% block content %}
+  <!-- department section -->
+  <style>
+    .return{
+      position: absolute;
+      right: 3%;
+      top: 2%;
+    }
+
+    .return a{
+      text-decoration: none;
+      color: #333;
+      font-weight: 700;
+    }
+
+    .return i{
+      font-size: 26px;
+    }
+  </style>
+
+  <div class="return">
+    <a href="{% url 'welcome' %}"><i class="fa-solid fa-xmark"></i></a>
+  </div>
+
+
+<section class="layout_padding p-5">
+    <div class="container ">
+        <div class="heading_container  d-flex justify-content-center row  p-3">
+            <h2 sytle="font-weight:bold">Tous nos services {{get_related_services.name}}</h2> 
+        </div>
+    </div>
+    <div class="container">
+        <div class="row gy-3 my-1" >
+            {% for service in get_related_services.category_service.all %}
+                <div class="col-md-3">
+                    <div class="b-card ">
+                        <a href="{% url 'payment' %}">
+                            <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
+                        </a>
+                        <div class="b-card-content">
+                            <p class="mt-3 justify-content-space-between" style=" font-size:20px">{{service.name}}</p>
+                            <p style="color:green">prix entre 3000F - 7000F</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+  <!-- end department section -->
+
+{% endblock content %}

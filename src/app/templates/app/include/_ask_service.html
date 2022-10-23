@@ -1,0 +1,42 @@
+
+  <section class="department_section layout_padding">
+    <div class="department_container">
+      <div class="container ">
+        <div class="heading_container">
+          <h2>
+            Le service à domicile en toute sérénité
+          </h2>
+          
+        </div>
+        <div class="row">
+            {% for i in get_ask_services %}
+          <div class="col-md-4">
+            <div class="box p-4 bg-light" style="border: 1px solid orange; border-radius: 25px; position: relative">
+              <div class="assitance">{{i.order}}</div>
+              <div class="img-box">
+                <img src="{{i.picture.url}}" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{i.title}}
+                </h5>
+                <p style="text-align:justify">
+                  {{i.description}}
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
+         
+        </div>
+        {% comment %}
+            <div class="btn-box">
+            <a href="">
+                View All
+            </a>
+            </div>
+        {% endcomment %}
+      </div>
+    </div>
+  </section>

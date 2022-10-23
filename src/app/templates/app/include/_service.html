@@ -1,0 +1,28 @@
+
+<section class="doctor_section layout_padding">
+    <div class="container">
+      <div class="heading_container ">
+        <h2>
+          {{page.text_title}}
+        </h2>
+        <p class="col-md-10 px-0">
+          {{page.text_description}}
+        </p>
+      </div>
+      <div class="row gy-5 my-4">
+
+        {% for service in get_something_service %}
+            <div class="col-md-4 ">
+                <a href="{% url 'service-middle-page' service.service_slug %}">
+                    <div class="a-card">
+                        <img src="{{service.picture.url}}" class="a-card-img" alt="" srcset="">
+                        <div class="a-card-content">
+                            <h3 class="a-card-header text-dark">{{service.name}}</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>

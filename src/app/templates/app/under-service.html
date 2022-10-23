@@ -1,0 +1,67 @@
+{% extends 'app/layout/base.html' %}
+{% load static %}
+{% block content %}
+  <!-- department section -->
+  
+  <section class="about_section mt-5 layout_margin-bottom">
+    <div class="container">
+      <div class="p-5 row">
+          
+      </div>
+    </div>
+    <div class="container  ">
+        <div class="row">
+            <div class="col-md-6 ">
+            <div class="img-box">
+                <img src="{{get_related_services.picture1.url}}" alt="">
+            </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="detail-box">
+                    <p> 
+                        <em>{{get_related_services.description}}</em>
+                    </p>
+                
+                    <ul>
+                    <li> <i class="fa-thin fa-shield-check"></i> La satisfaction de nos utilisateurs est notre priorité.</li>
+                    <li><i class="bi bi-check-circle"></i> Des jobbers competentes et qualfiés</li>
+                    <li><i class="bi bi-check-circle"></i> La rapidité du service et des programme de réservation</li>
+                    </ul> 
+                
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="layout_padding p-5">
+    <div class="container ">
+        <div class="heading_container  d-flex justify-content-center row  p-3">
+            <h2 sytle="font-weight:bold">Nos sous service les plus demander</h2> 
+        </div>
+    </div>
+    <div class="container">
+        <div class="row gy-3 my-1" >
+            {% for service in get_related_services.category_service.all %}
+                <div class="col-md-3">
+                    <div class="b-card ">
+                        <a href="{% url 'payment' %}">
+                            <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
+                        </a>
+                        <div class="b-card-content">
+                            <p class="mt-3 justify-content-space-between" style="font-weight:bold; font-size:20px">{{service.name}}</p>
+                            <p style="color:green">prix entre 3000F - 7000F</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+  <!-- end department section -->
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+
+  <section class="department_section layout_padding">
+    <div class="department_container">
+      <div class="container ">
+        <div class="heading_container">
+          <h2>
+            Tout nos services se font en toute sérénité avec
+          </h2>
+        </div>
+        <div class="row gx-4">
+            {% for quality in get_quality %}
+          <div class="col-md-4">
+            <div class="box p-4 assit" style="  ">
+              <div class="img-box">
+                <img src="{{quality.picture.url}}" style="height: 100%" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{quality.title}}
+                </h5>
+                <p style="text-align:justify">
+                  {{quality.description}}
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
+         
+        </div>
+        {% comment %}
+            <div class="btn-box">
+            <a href="">
+                View All
+            </a>
+            </div>
+        {% endcomment %}
+      </div>
+    </div>
+  </section>

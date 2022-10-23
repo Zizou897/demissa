@@ -1,0 +1,186 @@
+{% extends 'app/layout/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- end header section -->
+    <!-- slider section -->
+    
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active ">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="detail-box">
+                    <h1 class="text-dark">
+                      {{get_text.libele}}
+                    </h1>
+                    <p class="text-dark">
+                      {{get_text.description}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+
+
+
+
+ {% comment "" %}
+ 
+ {% include "app/include/_service.html" %}
+ {% endcomment %}   <!-- doctor section -->
+
+ <section class="doctor_section layout_padding">
+  <div class="container">
+    <div class="heading_container ">
+      <h2>
+        {{page.text_title}}
+      </h2>
+      <p class="col-md-10 px-0">
+        {{page.text_description}}
+      </p>
+    </div>
+    <div class="row gy-5 my-4">
+
+      {% for service in get_something_service %}
+          <div class="col-md-4 ">
+              <a href="{% url 'sous-service' service.service_slug %}">
+                  <div class="a-card">
+                      <img src="{{service.picture.url}}" class="a-card-img" alt="" srcset="">
+                      <div class="a-card-content">
+                          <h3 class="a-card-header text-dark">{{service.name}}</h3>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<section class="layout_padding p-5 bg-light">
+  <div class="container ">
+      <div class="heading_container row  p-3">
+          <h2 sytle="font-weight:bold">Nos sous service les plus demander</h2> 
+      </div>
+  </div>
+  <div class="container">
+      <div class="row slider_slick gy-3 my-1" >
+          {% for service in get_under_services %}
+              <div class="col-md-3">
+                  <div class="b-card ">
+                      <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
+                      <div class="b-card-content">
+                          <p class="mt-3 justify-content-space-between" style="font-weight:bold; font-size:20px">{{service.name}}</p>
+                          <p style="color:green">prix entre 3000F - 7000F</p>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+      </div>
+  </div>
+</section>
+
+
+
+{% include "app/include/_ask_service.html" %}
+<!-- end doctor section -->
+
+  <section>
+    <div class="container">
+      <div class="row row_form mb-4" style="background-image: url({% static 'app\images\formation.svg' %});">
+        <div class="col-md-6">
+          <h2><strong>Formation</strong></h2>
+          <p class="mt-3">
+            Vous n'aviez aucune notion ou connaissance dans un métier,
+            ne vous inquiétez pas DE-MISSA avec son service formation
+            vous propose ces formations pratiques et certifiés
+          </p>
+            <a href="" class="mt-3 text_center row_form_btn">
+              je m'inscris pour une formation
+            </a>
+        </div>
+      </div>
+
+      <div class="row row_jobber d-flex justify-content-end" style="background-image: url({% static 'app\images\jober.svg'%});">
+        <div class="col-md-6 row_jobber_box">
+          <h2><strong>Dévenir jobber chez DE-MISSA</strong></h2>
+          <p sytle="font-style: italic;">
+            Vous êtres un jobber, vous aviez des compétences et des
+            qualités et vous souhaitez avoir plus de visibilité pour vos
+            prestations en réalisant plus d'économies, rejoignez
+            maintenant l'équipe des jobbers de DE-MISSA
+          </p>
+          <a href="" class="mt-3 text row_form_btn">
+            dévenir jobber
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- department section -->
+
+  {% include 'app/include/_quality.html' %}
+
+
+
+  <!-- end department section -->
+
+  <!-- about section -->
+  <section class="about_section mt-5 layout_margin-bottom">
+    <div class="container heading_container">
+      <div class="p-3 row ">
+          <h2>Pourquoi choisir DE-MISSA pour tout vos services ?</h2> 
+      </div>
+    </div>
+    <div class="container  ">
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="{{get_about.picture.url}}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+
+          <div class="detail-box">
+        
+            <ul>
+              <li> <i class="fa-thin fa-shield-check"></i> La satisfaction de nos utilisateurs est notre priorité.</li>
+              <li><i class="bi bi-check-circle"></i> Des jobbers competentes et qualfiés</li>
+              <li><i class="bi bi-check-circle"></i> La rapidité du service et des programme de réservation</li>
+            </ul> 
+            <p> 
+              <em>{{get_about.description}}</em>
+            </p>
+            <a href="">
+             Plus
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end about section -->
+
+
+
+  <!-- contact section -->
+ 
+  <!-- end contact section -->
+
+  <!-- client section -->
+
+
+
+  <!-- end client section -->
+  {% endblock content %}
