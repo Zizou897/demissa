@@ -8,7 +8,6 @@
     <img src="https://images.pexels.com/photos/3727469/pexels-photo-3727469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
     <div class="header-text">
         <h1>Réservez une prestation</h1>
-      
        <small>Réserver une prestation et payer en espèce ou par mobile money</small>
     </div>
 </header>
@@ -23,11 +22,11 @@
             </div>
         </div>
         <div class="input">
-            <label>L'intervention est'elle urgente ? :</label>
+            <label>L'intervention est'elle urgente ? {{sous_service_slug}}:</label>
             <div class="input-items">
                 <select  name="paiementType" v-model="take_intervention" >
                     <option value="" selected>Sélectionner le type de l'intervention (*)</option>
-                    <option value="urgence"> <a href="#"  @click.prevent="test">En urgence</a> </option>
+                    <option value="urgence">En urgence</option>
                     <option value="RDV">Rendez-vous</option>
                 </select>
             </div>

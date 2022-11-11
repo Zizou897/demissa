@@ -3,42 +3,33 @@
 {% block content %}
     <!-- end header section -->
     <!-- slider section -->
-    
-    <section class="slider_section ">
-      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active ">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="detail-box">
-                    <h1 class="text-dark">
-                      {{get_text.libele}}
-                    </h1>
-                    <p class="text-dark">
-                      {{get_text.description}}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <!-- end slider section -->
+
+
+<div class="box-header">
+    <img src="{{get_banner.picture.url}}" alt="">
+    <div class="box-section-text">
+        <!-- JbYdiICbjykdO3prQszFVfbMo90O0yWuSYiAXk_p-->
+        <h1>{{get_text.libele}}</h1>
+        <small>{{get_text.description}}</small>
+    </div>
+    <a href="#service_section"><i class="fa-solid fa-chevron-down"></i></a>
+</div>    
+
+
+<div class="box-responce-header" style="background: url({{get_banner.picturePhone.url}})">
+  <div class="box-section-text">
+      <!-- JbYdiICbjykdO3prQszFVfbMo90O0yWuSYiAXk_p-->
+      <h1>{{get_text.libele}}</h1>
+      <small>{{get_text.description}}</small>
   </div>
+  <a href="#service_section"><i class="fa-solid fa-chevron-down"></i></a>
+</div> 
 
 
+    <!-- doctor section -->
 
-
-
- {% comment "" %}
- 
- {% include "app/include/_service.html" %}
- {% endcomment %}   <!-- doctor section -->
-
- <section class="doctor_section layout_padding">
+ <section id="service_section" class="doctor_section layout_padding">
   <div class="container">
     <div class="heading_container ">
       <h2>
@@ -48,15 +39,14 @@
         {{page.text_description}}
       </p>
     </div>
-    <div class="row gy-5 my-4">
-
+    <div class="row my-4">
       {% for service in get_something_service %}
-          <div class="col-md-4 ">
-              <a href="{% url 'sous-service' service.service_slug %}">
+          <div class="col-md-4 col-xs-6">
+              <a href="{% url 'service-detail-page' service.service_slug %}">
                   <div class="a-card">
                       <img src="{{service.picture.url}}" class="a-card-img" alt="" srcset="">
                       <div class="a-card-content">
-                          <h3 class="a-card-header text-dark">{{service.name}}</h3>
+                          <h3 class="a-card-header text-dark" style='font-size:15px'>{{service.name}}</h3>
                       </div>
                   </div>
               </a>
@@ -67,9 +57,9 @@
 </section>
 
 
-<section class="layout_padding p-5 bg-light">
+<section class="layout_padding bg-light">
   <div class="container ">
-      <div class="heading_container row  p-3">
+      <div class="heading_container row ">
           <h2 sytle="font-weight:bold">Nos sous service les plus demander</h2> 
       </div>
   </div>
@@ -80,8 +70,8 @@
                   <div class="b-card ">
                       <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
                       <div class="b-card-content">
-                          <p class="mt-3 justify-content-space-between" style="font-weight:bold; font-size:20px">{{service.name}}</p>
-                          <p style="color:green">prix entre 3000F - 7000F</p>
+                          <p class="mt-2" style="font-size:20px">{{service.name}}</p>
+                          <p style="color:green">prix entre {{service.price}}</p>
                       </div>
                   </div>
               </div>
@@ -90,9 +80,7 @@
   </div>
 </section>
 
-
-
-{% include "app/include/_ask_service.html" %}
+{% include "app/includes/_ask_service.html" %}
 <!-- end doctor section -->
 
   <section>
@@ -130,7 +118,7 @@
 
   <!-- department section -->
 
-  {% include 'app/include/_quality.html' %}
+  {% include 'app/includes/_quality.html' %}
 
 
 
@@ -171,16 +159,4 @@
     </div>
   </section>
   <!-- end about section -->
-
-
-
-  <!-- contact section -->
- 
-  <!-- end contact section -->
-
-  <!-- client section -->
-
-
-
-  <!-- end client section -->
   {% endblock content %}

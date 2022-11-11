@@ -12,7 +12,7 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="">
+  <link rel="shortcut icon" href="{{get_infos_web.picture.url}}" type="">
 
   <title> {{page.title}} </title>
 
@@ -42,157 +42,37 @@
 
 
 </head>
-{% if is_true or is_link %}
-{% elif is_active  or is_active_pay %}
-<body class="sub_page">
-  <div class="hero_area">
-    <div class="hero_bg_box" >
-      <img src="{{get_banner.picture.url}}" alt="">
-    </div>
-    <!-- Menu-->
-    <header class="b-nav">
-      <a href="{% url 'welcome' %}" class="nav-icon" aria-label="visit-home" aria-current="page">
-        <img src="{{get_infos_web.picture.url}}" alt="logo" srcset=""><span>DE-MISSA</span>
-      </a>
 
-      <div class="middle">
-          <span><i class="fa-solid fa-plus"></i></span> <a href="{% url 'service' %}"> Demande un service</a>
-      </div>
-
-      <div class="main-navlink">
-        <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-          
-        <div class="navlinks-container">
-            <a href="{% url 'welcome' %}" aria-current="page">Accueil</a>
-            <a href="{% url 'service' %}" >Demander un devis</a>
-            <a href="{% url 'welcome' %}" >A propos</a>
-        </div>
-      </div>
-    </header>
-    <!-- header section strats
-    <header class="header_section">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="{% url 'welcome' %}">
-            <span>
-              DE-MISSA
-            </span>
-          </a>
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class=""> </span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'welcome' %}">Accueil<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html"> A propos</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contacter Nous</a>
-              </li>
-              <form class="form-inline">
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>  -->
-  </div>
-  {% else %}
 <body>
-  
-  <div class="hero_area">
-    <div class="hero_bg_box" style="margin-top: 70px">
-      <img src="{{get_banner.picture.url}}" alt="">
+  <!-- Menu-->
+  {% if is_true %}
+  {% else %}
+  <header class="b-nav">
+    <a href="{% url 'welcome' %}" class="nav-icon" aria-label="visit-home" aria-current="page">
+      <img src="{{get_infos_web.picture.url}}" alt="logo" srcset=""><span>DE-MISSA</span>
+    </a>
+
+    <div class="middle">
+        <span><i class="fa-solid fa-plus"></i></span> <a href="{% url 'service' %}"> Demande un service</a>
     </div>
-    <header class="b-nav">
-      <a href="{% url 'welcome' %}" class="nav-icon" aria-label="visit-home" aria-current="page">
-        <img src="{{get_infos_web.picture.url}}" alt="logo" srcset=""><span>DE-MISSA</span>
-      </a>
 
-      <div class="middle">
-          <span><i class="fa-solid fa-plus"></i></span> <a href="{% url 'service' %}"> Demande un service</a>
+    <div class="main-navlink">
+      <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+        
+      <div class="navlinks-container">
+          <a href="{% url 'welcome' %}" aria-current="page">Accueil</a>
+          <a href="{% url 'service' %}" >Demander un devis</a>
+          <a href="{% url 'welcome' %}" >A propos</a>
       </div>
+    </div>
+  </header>
 
-      <div class="main-navlink">
-        <button class="hamburger" type="button" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-          
-        <div class="navlinks-container">
-            <a href="{% url 'welcome' %}" aria-current="page">Accueil</a>
-            <a href="{% url 'service' %}" >Demander un devis</a>
-            <a href="{% url 'welcome' %}" >A propos</a>
-        </div>
-      </div>
-    </header>
-    
-    <!-- header section strats 
-    <nav class="nav" style="z-index:1">
-        <div class="a-container container_list">
-            <div class="a-logo">
-                <img src="pngegg.png" alt="">
-            </div>
-            <div class="main_list" id="mainListDiv">
-                <ul>
-                    <li>
-                        <a href="{% url 'service' %}" class="boutton">demander un service</a>
-                        <!-- <button class="boutton">demander un service</button>
-                    </li>
-                    <li>
-                        <a href="#" id="nav-cta"> feature line</a>
-                    </li>
-                    <li id="search">
-                    <div class="search-box">
-                        <form action="">
-                            <input type="text" name="search">
-                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
-                    </div>
-                    </li>
-                    <li class="tablette">
-                        <a href="#" id="nav-cta"> feature line</a>
-                    </li>
-                    <li class="tablette">
-                        <a href="#" id="nav-cta"> feature line</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="media">
-                <div class="search-box">
-                    <form action="">
-                        <input type="text" name="search" class="inputsearch">
+  {% endif %}
 
-                    </form>
-                </div>
-                <li><a class="search" href="#"><i  class="fas fa-search"></i></a></li>
-            </div>
-            <div class="media_button">
-                <button class="main_media_button" id="mediaButton">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>  -->
-    
-
-    {% endif %}
 {% block content %}
 
 
@@ -200,9 +80,11 @@
 {% endblock content %}
 
 
-{% if is_true == True or is_link %}
-{% else %}
+
   <!-- footer section -->
+  {% if is_true %}
+  
+  {% else %}
   <section class="footer_section">
     <div class="container">
       <div class="row">
@@ -274,18 +156,11 @@
           </div>
 
           <div class="footer_social">
-            <a href="">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-linkedin" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-instagram" aria-hidden="true"></i>
-            </a>
+            {% for social in get_socials %}
+              <a href="{{social.link}}">
+                <i class="{{social.icon}}" aria-hidden="true"></i>
+              </a>
+            {% endfor %}
           </div>
 
         </div>
@@ -323,8 +198,7 @@
       </div>
     </div>
   </footer>
-
-  {% endif %}
+ {% endif %}
   <!-- footer section -->
 
   <!-- popper js -->
@@ -347,25 +221,45 @@
   <!-- custom js -->
   <!-- Google Map -->
   <!-- End Google Map -->
-
+  <script async src='https://stackwhats.com/pixel/f70e57d8298b8d2d176d4c1a75fe80'></script>
   <script>
-
     const humburgerToggler = document.querySelector(".hamburger");
     const navLinksContainer = document.querySelector(".navlinks-container");
+    var nav = document.querySelector(".b-nav");
+
+    window.addEventListener('scroll', function(){
+      if(window.pageYOffset > 80){
+        nav.classList.add('white', 'shadow');
+        nav.style.background = "#fafafa";
+        nav.style.transition = "0.4s";
+      }else{
+        nav.classList.remove('white', 'shadow');
+        nav.style.background = "transparent";
+      }
+    })
 
     const toggleNav = () => {
-        humburgerToggler.classList.toggle("open")
-        const ariaToggle = humburgerToggler.getAttribute("aria-expanded") === "true" ? "false" : "true";
-        humburgerToggler.setAttribute("aria-expanded", ariaToggle)
-        navLinksContainer.classList.toggle("open")
+      humburgerToggler.classList.toggle("open")
+      const ariaToggle = humburgerToggler.getAttribute("aria-expanded") === "true" ? "false" : "true";
+      humburgerToggler.setAttribute("aria-expanded", ariaToggle)
+      navLinksContainer.classList.toggle("open")
+      navLinksContainer.classList.add('white', 'shadow');
+      window.addEventListener('click', function(){
+        if(window.pageYOffset == 0 && ariaToggle == "true"){
+          console.log(ariaToggle)
+          nav.style.background = "#fafafa";
+          nav.classList.add('white', 'shadow');
+          nav.style.transition = "0.4s";
+        }
+      })
     }
 
     humburgerToggler.addEventListener("click", toggleNav)
     new ResizeObserver(entries => {
         if(entries[0].contentRect.width <= 950){
-            navLinksContainer.style.transition = "transform 0.4s ease"
+          navLinksContainer.style.transition = "transform 0.4s ease"
         }else{
-            navLinksContainer.style.transition = "none"
+          navLinksContainer.style.transition = "none"
         }
     }).observe(document.body)
 
@@ -378,11 +272,30 @@
       slidesToscroll: 1,
       autoplay: true,
       autoplayspeed: 2000,
-      prevArrow: "none",
-      nextArrow: "none"
+      prevArrow: '<i class="fa-solid fa-angle-right right_arrow">',
+      nextArrow: '<i class="fa-solid fa-angle-left left_arrow">',
+        responsive: [
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        },
+      ]
   });
 
   </script>
+ 
   <script>
     new Vue({
       el: '#my-form',
@@ -488,15 +401,25 @@
                   if(response.data.success){
                     Swal.fire({
                       icon: 'success',
-                      title: 'Your work has been saved',
+                      title: 'Reservation effectuée',
                       text: response.data.msg ,
                       showConfirmButton: false,
-                      timer: 1500
-                    })
+                      timer: 2000
+                    });
+                    this.address = '';
+                    this.time = '';
+                    this.date = '';
+                    this.nbr_pro = '';
+                    this.name = '';
+                    this.email = '';
+                    this.phone = '';
+                    this.message = '';
+                    this.money = '';
+                    this.confirm = false;
                   }else{
                     Swal.fire({
                       icon: 'error',
-                      title: 'Your work has been saved',
+                      title: 'Erreur',
                       text: response.data.msg ,
                       showConfirmButton: false,
                       timer: 1500
@@ -507,7 +430,7 @@
               }else{
                 Swal.fire({
                   icon: 'error',
-                  title: 'Your work has been saved',
+                  title: 'Erreur',
                   text: "Veuillez cocher nos  conditions générales d'utilisation" ,
                   showConfirmButton: false,
                   timer: 1500
@@ -523,7 +446,6 @@
       
     })
   </script>
-
 
 </body>
  

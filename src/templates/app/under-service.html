@@ -2,23 +2,6 @@
 {% load static %}
 {% block content %}
   <!-- department section -->
-  <style>
-    .return{
-      position: absolute;
-      right: 3%;
-      top: 2%;
-    }
-
-    .return a{
-      text-decoration: none;
-      color: #333;
-      font-weight: 700;
-    }
-
-    .return i{
-      font-size: 26px;
-    }
-  </style>
 
   <div class="return">
     <a href="{% url 'welcome' %}"><i class="fa-solid fa-xmark"></i></a>
@@ -36,7 +19,7 @@
             {% for service in get_related_services.category_service.all %}
                 <div class="col-md-3">
                     <div class="b-card ">
-                        <a href="{% url 'payment' %}">
+                        <a href="{% url 'reservation' service.sous_service_slug %}">
                             <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
                         </a>
                         <div class="b-card-content">

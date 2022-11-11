@@ -4,6 +4,18 @@ from django.utils.safestring import mark_safe
 from app.models import *
 # Register your models here.
 
+@admin.register(Web)
+class WebAdmin(admin.ModelAdmin):
+    list_display = ("image_view", "name", "date_add", "publish")
+    date_hierarchy = "date_add"
+    list_per_page = 10
+    list_editable = ["publish"]
+    
+    def image_view(self, obj):
+        return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
+    image_view.short_description = "Aperçu des images"
+
+
 
 @admin.register(Banner)
 class BannerAdmin(admin.ModelAdmin):
@@ -51,8 +63,6 @@ class AskServiceAdmin(admin.ModelAdmin):
     image_view.short_description = "Aperçu des images"
 
 
-
-
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
     list_display = ("image_view", "title", "date_add", "publish")
@@ -64,6 +74,12 @@ class AboutAdmin(admin.ModelAdmin):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
 
+
+
+@admin.register(Social)
+class SocialAdmin(admin.ModelAdmin):
+    list_display = ("name", "link", 'publish')
+    list_editable = ["publish"]
 
 
 @admin.register(Service)
@@ -81,25 +97,6 @@ class ServiceAdmin(admin.ModelAdmin):
 @admin.register(SousService)
 class SousServiceAdmin(admin.ModelAdmin):
     list_display = ("image_view", "name", "order", "price", "sous_service_slug", "date_add", "publish")
-    date_hierarchy = "date_add"
-    list_per_page = 10
-    list_editable = ["publish"]
-    
-    def image_view(self, obj):
-        return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
-    image_view.short_description = "Aperçu des images"
-
-
-@admin.register(Social)
-class SocialAdmin(admin.ModelAdmin):
-    list_display = ("name", "link", 'publish')
-    list_editable = ["publish"]
-
-
-
-@admin.register(Web)
-class WebAdmin(admin.ModelAdmin):
-    list_display = ("image_view", "name", "date_add", "publish")
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]

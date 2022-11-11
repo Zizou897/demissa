@@ -1,16 +1,15 @@
-
-from django.shortcuts import render, get_object_or_404
+from unicodedata import category
+from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
-import json
 
 from demissa import settings
-from app.models import *
 from app.functions import *
 # Create your views here.
+
 
 def verify_email(email):
     try:
@@ -19,96 +18,102 @@ def verify_email(email):
     except ValidationError:
         return True
 
+
 def home(request):
   get_infos_web = get_info_web({'publish':True})
   get_banner = get_banners({'publish':True})
   get_text = get_texts({'publish':True})
   get_quality = get_qualities({'publish':True})
-  get_about = get_abouts({'publish':True})
-  get_something_service = get_something_services({'publish':True})
   get_ask_services = get_ask_service({'publish':True})
+  get_about = get_abouts({'publish':True})
+  get_socials =   get_social({'publish':True})
+  get_something_service = get_something_services({'publish':True})
   get_under_services = get_under_service({'publish':True})
+
+  template = 'app/index.html'
   context = {
-      'page':{
-        'title': 'De-missa | Bienvenue',
-        'text_title': 'De quel service avez-vous besoins ?',
-        'text_description': 'Pour chaque situation, trouvez le prestataire dont les compétences répondent à vos attentes et à votre niveau d’exigence.',
-      },
-      'get_banner': get_banner,
-      'get_text': get_text,
-      'get_quality': get_quality,
-      'get_about': get_about,
-      'get_something_service': get_something_service,
-      'get_ask_services': get_ask_services,
-      'get_under_services': get_under_services,
-      'get_infos_web': get_infos_web,
+    'page':{
+      'title': 'De-missa | Bienvenue',
+      'text_title': 'De quel service avez-vous besoins ?',
+      'text_description': 'Pour chaque situation, trouvez le prestataire dont les compétences répondent à vos attentes et à votre niveau d’exigence.',
+    },
+    'get_infos_web': get_infos_web,
+    'get_banner': get_banner,
+    'get_text': get_text,
+    'get_quality': get_quality,
+    'get_ask_services': get_ask_services,
+    'get_about': get_about,
+    'get_socials': get_socials,
+    'get_something_service': get_something_service,
+    'get_under_services': get_under_services,
   }
-  return render(request, 'app/index.html', context)
+  return render(request, template, context)
 
 
 def service(request):
   get_something_service = get_services({'publish':True})
-
+  get_infos_web = get_info_web({'publish':True}) 
+  
+  template = 'app/service.html'
   context = {
       'page':{
         'title': 'De-missa | Service',
         'text_title': ' Tous nos services ?',
         'text_description': '',
       },
-      'get_something_service': get_something_service,
-      'is_true': True,
+    'is_true': True,
+    'get_something_service': get_something_service,
+      'get_infos_web': get_infos_web,
   }
-
-  return render(request, 'app/service.html', context)
+  return render(request, template, context)
 
 
 def under_service(request, service_slug):
   get_related_services =  get_related_service(service_slug)
-  get_infos_web = get_info_web({'publish':True})
-  cartogory = SousService.service
-  #get_all_related_services = get_all_related_service({'service':cartogory})
-  get_under_services = get_under_service({'publish':True})
-  get_about = get_abouts({'publish':True})
+  get_infos_web = get_info_web({'publish':True}) 
+
+  template = 'app/under-service.html'
   context = {
-      'page':{
-        'title': 'De-missa | ' + service_slug,
-        
+    'page':{
+      'title': 'De-missa | ' + service_slug,
       },
-      'get_about': get_about,
-      'get_under_services': get_under_services,
-      'get_related_services' : get_related_services,
+    'is_true': True,
+    'get_related_services': get_related_services,
       'get_infos_web': get_infos_web,
-      #'get_all_related_services': get_all_related_services,
-      'is_active': True,
   }
- 
-  return render(request, 'app/under-service.html', context)
+  return render(request, template, context)
 
 
 def under_service_under(request, service_slug):
   get_related_services =  get_related_service(service_slug)
+  get_infos_web = get_info_web({'publish':True})  
   
+  template = 'app/detail-service.html'
   context = {
       'page':{
         'title': 'De-missa | ' + service_slug,
         'text_title': ' Tous nos service ' + service_slug,
       },
       'get_related_services' : get_related_services,
+      'get_infos_web': get_infos_web,
       'is_link': True,
   }
   print("########1########")
-  return render(request, 'app/service-middle.html', context)
+  return render(request, template, context)
 
 
-def payment(request):
+def reserve(request, sous_service_slug ):
   get_banner = get_banners({'publish':True})
   get_infos_web = get_info_web({'publish':True})
+  template = 'app/reservation.html'
   context = {
     'get_banner': get_banner,
     'get_infos_web': get_infos_web,
-    'is_active_pay': True
+    'sous_service_slug': sous_service_slug
   }
-  return render(request, 'app/payment.html', context)
+  return render(request, template, context)
+
+
 
 
 @csrf_exempt
@@ -134,9 +139,9 @@ def postData(request):
   elif verify_email(email):
     msg = 'veuillez saisir un addresse Mail correct'
   elif len(phone) < 10:
-    msg = 'Le numéro de téléphone oit etre e 10 chiffres'
+    msg = 'Le numéro de téléphone doit etre e 10 chiffres'
   else:
-    all_is_true, msg = True, 'Enregistrement effectué'
+    all_is_true, msg = True, 'Vous receverez un email '
   
   
   
@@ -158,8 +163,6 @@ def postData(request):
   print("###############  3  #####################")
   send_mail(subjects, messages, customer_email, to_lists,fail_silently=False)
   print("###############  3  #####################")
-  
-   
   
   data = {
     'success': all_is_true,

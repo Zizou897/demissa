@@ -1,0 +1,15 @@
+{% extends 'app/layout/base.html' %}
+{% load static %}
+{% block content %}
+  <!-- department section -->
+ 
+  <div class="return">
+    <a href="{% url 'welcome' %}"><i class="fa-solid fa-xmark"></i></a>
+  </div>
+
+
+  {% include "app/includes/_service.html" %}
+
+  <!-- end department section -->
+
+{% endblock content %}

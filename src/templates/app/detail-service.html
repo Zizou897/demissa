@@ -3,7 +3,7 @@
 {% block content %}
   <!-- department section -->
   
-  <section class="about_section mt-5 layout_margin-bottom">
+  <section class="about_section layout_margin-bottom">
     <div class="container">
       <div class="p-5 row">
           
@@ -46,7 +46,7 @@
             {% for service in get_related_services.category_service.all %}
                 <div class="col-md-3">
                     <div class="b-card ">
-                        <a href="{% url 'payment' %}">
+                        <a href="{% url 'reservation' service.sous_service_slug %}">
                             <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
                         </a>
                         <div class="b-card-content">

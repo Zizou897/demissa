@@ -1,5 +1,5 @@
 
-<section class="doctor_section layout_padding">
+<section id="sservice_section" class="doctor_section layout_padding">
     <div class="container">
       <div class="heading_container ">
         <h2>
@@ -13,11 +13,11 @@
 
         {% for service in get_something_service %}
             <div class="col-md-4 ">
-                <a href="{% url 'service-middle-page' service.service_slug %}">
+                <a href="{% url 'sous-service' service.service_slug %}">
                     <div class="a-card">
                         <img src="{{service.picture.url}}" class="a-card-img" alt="" srcset="">
                         <div class="a-card-content">
-                            <h3 class="a-card-header text-dark">{{service.name}}</h3>
+                            <h3 class="a-card-header text-dark" style="font-size: 25px">{{service.name}}</h3>
                         </div>
                     </div>
                 </a>
