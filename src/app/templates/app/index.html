@@ -4,32 +4,43 @@
     <!-- end header section -->
     <!-- slider section -->
     <!-- end slider section -->
+  <style>
+    
+    .box-header {
+      background: url({{get_banner.picture.url}});
+      background-repeat: no-repeat;
+      background-size: cover;
+     
+    }
+    
+    @media(max-width: 750px){
+      .box-header{
+        background: url({{get_banner.picturePhone.url}});
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+      }
+    }
+
+  </style>
 
 
-<div class="box-header">
-    <img src="{{get_banner.picture.url}}" alt="">
-    <div class="box-section-text">
-        <!-- JbYdiICbjykdO3prQszFVfbMo90O0yWuSYiAXk_p-->
-        <h1>{{get_text.libele}}</h1>
-        <small>{{get_text.description}}</small>
-    </div>
-    <a href="#service_section"><i class="fa-solid fa-chevron-down"></i></a>
-</div>    
-
-
-<div class="box-responce-header" style="background: url({{get_banner.picturePhone.url}})">
+  
+<div id="box-header" class="box-header" >
+  <img class="box-img" src="">
   <div class="box-section-text">
-      <!-- JbYdiICbjykdO3prQszFVfbMo90O0yWuSYiAXk_p-->
-      <h1>{{get_text.libele}}</h1>
-      <small>{{get_text.description}}</small>
+      <h1>Réservez une prestation</h1>
+     <small>Réserver une prestation et payer en espèce ou par mobile money</small>
   </div>
   <a href="#service_section"><i class="fa-solid fa-chevron-down"></i></a>
-</div> 
+</div>
+
+
 
 
     <!-- doctor section -->
 
- <section id="service_section" class="doctor_section layout_padding">
+ <section id="service_section" class="doctor_section layout_padding" style="padding-bottom:0px">
   <div class="container">
     <div class="heading_container ">
       <h2>
@@ -57,13 +68,12 @@
 </section>
 
 
-<section class="layout_padding bg-light">
-  <div class="container ">
-      <div class="heading_container row ">
-          <h2 sytle="font-weight:bold">Nos sous service les plus demander</h2> 
-      </div>
-  </div>
+<section class="layout_padding bg-light" style=" max-height: 350px; padding: 40px 0 20px 0">
+  
   <div class="container">
+    <div class="heading_container row " style="padding: 0 0 0 70px">
+      <h2 sytle="font-weight:bold">Nos sous service les plus demander</h2> 
+    </div>
       <div class="row slider_slick gy-3 my-1" >
           {% for service in get_under_services %}
               <div class="col-md-3">

@@ -2,6 +2,7 @@ from django.db import models
 
 
 from autoslug import AutoSlugField
+from twilio.rest import Client
 
 # Create your models here.
 
@@ -137,3 +138,28 @@ class SousService(Convention):
 
     def __str__(self):
         return self.name
+
+
+class Commandes(Convention):
+    name = models.CharField(max_length=250)
+    phone = models.CharField(max_length=50)
+    service = models.CharField(max_length=50)
+    
+    class Meta:
+        verbose_name = 'Reservation'
+        verbose_name_plural = 'Reservations'
+    
+    def __str__(self):
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        account_sid = 'ACa35b83c179182b2764a0ca2150aaa293' 
+        auth_token = 'dec04e9a2a852324296a7011cf6104f8' 
+        client = Client(account_sid, auth_token) 
+        
+        message = client.messages.create(
+            body=f'bonjour M {self.name} Vous avez demande un service de {self.service} \n\nMerci de vouloir patienter afin qu\'un agent vous appelle ',
+            from_='+13608033691',
+            to='+2250789773420'
+        )
+        return super().save(*args,**kwargs)

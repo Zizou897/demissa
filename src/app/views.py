@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 
 from demissa import settings
 from app.functions import *
+from app.models import *
 # Create your views here.
 
 
@@ -129,40 +130,45 @@ def postData(request):
   nbr_pro = request.POST.get('nbr_pro')
   name = request.POST.get('name')
   email = request.POST.get('email')
-  phone = request.POST.get('phone')
+  phones = request.POST.get('phone')
   message = request.POST.get('message')
   money = request.POST.get('money')
+  service = request.POST.get('service')
 
           
-  if not name or name.isspace() or not email or email.isspace() or not phone or phone.isspace():
+  if not name or name.isspace() or not email or email.isspace() or not phones or phones.isspace():
     msg = 'Veuillez renseigner les champs vides'
   elif verify_email(email):
     msg = 'veuillez saisir un addresse Mail correct'
-  elif len(phone) < 10:
+  elif len(phones) < 10:
     msg = 'Le numéro de téléphone doit etre e 10 chiffres'
   else:
     all_is_true, msg = True, 'Vous receverez un email '
   
+  phone = "+"+str(225)+phones
   
-  
-  print(f'bonjour M {name} Vous avez demande un service de manege le {date} à {time}' )
-  print(f'bonjour M {name} a demande un service de manege le {date} à {time} Son numero est le {phone}')
-  
-  
-  subject = "Demande de service chez DE-MISSA"
-  subjects = "DE-MISSA"
-  message = f"Bonjour M./Mde/Mdle {name}  \nVous avez demande un service de manege pour {date} à {time}\n pour vos services à domicile \n\n\n\n MERCI POUR VOTRE CONFIANCE"
-  messages = f'bonjour M {name} a demande un service de manege le {date} à {time} \nSon numero est le {phone}'
-  from_email = settings.EMAIL_HOST_USER
-  customer_email = email
-  print("###############  1  #####################")
-  to_list = [email]
-  to_lists = [settings.EMAIL_HOST_USER]
-  print("###############  2  #####################")         
-  send_mail(subject, message, from_email, to_list, fail_silently=False)
-  print("###############  3  #####################")
-  send_mail(subjects, messages, customer_email, to_lists,fail_silently=False)
-  print("###############  3  #####################")
+  print(phone)
+  reserved,created = Commandes.objects.get_or_create(name=name, phone=phone, service=service)
+  if created:
+    print(f'bonjour M {name} Vous avez demande un service de manege le {date} à {time}' )
+    print(f'bonjour M {name} a demande un service de manege le {date} à {time} Son numero est le {phone}')
+    reserved.save()
+    
+    
+    subject = "Demande de service chez DE-MISSA"
+    subjects = "DE-MISSA"
+    message = f"Bonjour M./Mde/Mdle {name}  \nVous avez demande un service de manege pour {date} à {time}\n pour vos services à domicile \n\n\n\n MERCI POUR VOTRE CONFIANCE"
+    messages = f'bonjour M {name} a demande un service de manege le {date} à {time} \nSon numero est le {phone}'
+    from_email = settings.EMAIL_HOST_USER
+    customer_email = email
+    print("###############  1  #####################")
+    to_list = [email]
+    to_lists = [settings.EMAIL_HOST_USER]
+    print("###############  2  #####################")         
+    send_mail(subject, message, from_email, to_list, fail_silently=False)
+    print("###############  3  #####################")
+    send_mail(subjects, messages, customer_email, to_lists,fail_silently=False)
+    print("###############  3  #####################")
   
   data = {
     'success': all_is_true,

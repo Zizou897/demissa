@@ -225,6 +225,7 @@
   <script>
     const humburgerToggler = document.querySelector(".hamburger");
     const navLinksContainer = document.querySelector(".navlinks-container");
+    const pictureDevice = document.getElementById("box-header");
     var nav = document.querySelector(".b-nav");
 
     window.addEventListener('scroll', function(){
@@ -256,12 +257,18 @@
 
     humburgerToggler.addEventListener("click", toggleNav)
     new ResizeObserver(entries => {
-        if(entries[0].contentRect.width <= 950){
-          navLinksContainer.style.transition = "transform 0.4s ease"
-        }else{
-          navLinksContainer.style.transition = "none"
-        }
+      if(entries[0].contentRect.width <= 950){
+        navLinksContainer.style.transition = "transform 0.4s ease"
+      }
+      else if(entrie[0].contentRect.width <= 420){
+        pictureDevice.style.backgroundImage = "url('{{get_banner.picturePhone.url}}')";
+        console.log('ok')
+      }
+      else{
+        navLinksContainer.style.transition = "none"
+      }
     }).observe(document.body)
+    
 
 </script>
 
@@ -276,19 +283,24 @@
       nextArrow: '<i class="fa-solid fa-angle-left left_arrow">',
         responsive: [
         {
-          breakpoint: 900,
+          breakpoint: 950,
           settings: {
+            centerMode: true,
             slidesToShow: 2,
             slidesToScroll: 1,
             infinite: true,
-            
+            prevArrow: false,
+            nextArrow: false,
           }
         },
         {
           breakpoint: 600,
           settings: {
+            centerMode: true,
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            prevArrow: false,
+            nextArrow: false,
           }
         },
       ]
@@ -302,6 +314,7 @@
       delimiters: ['%{', '}'],
       data:{
           message: '',
+          service: '',
           address: '',
           name: '',
           phone: '',
@@ -390,8 +403,9 @@
                 myForm.append('name', this.name)
                 myForm.append('email', this.email)
                 myForm.append('phone', this.phone)
-                myForm.append('message', this.message)
                 myForm.append('money', this.money)
+                myForm.append('message', this.message)
+                myForm.append('service', this.service)
                 
   
                 axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
@@ -415,6 +429,7 @@
                     this.phone = '';
                     this.message = '';
                     this.money = '';
+                    this.service = '';
                     this.confirm = false;
                   }else{
                     Swal.fire({

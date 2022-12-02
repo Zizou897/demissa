@@ -16,11 +16,19 @@
     <small>Les champs comportant un <span>(*)</span> sont obligatoires.</small>
     <form class="form" id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
         <div class="input">
+            <label for="service">Le sous-service souhaité</label>
+            <div class="input-items">
+                <input type="text" placeholder="service" v-model="service" id="service" name="service" value="{{sous_service_slug}}">
+            </div>
+        </div>
+
+        <div class="input">
             <label for="address">Où le professionnel doit-il intervenir ?</label>
             <div class="input-items">
                 <input type="text" placeholder="Address *" v-model="address" id="address" name="address" >
             </div>
         </div>
+        
         <div class="input">
             <label>L'intervention est'elle urgente ? {{sous_service_slug}}:</label>
             <div class="input-items">

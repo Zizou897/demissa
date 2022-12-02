@@ -104,3 +104,14 @@ class SousServiceAdmin(admin.ModelAdmin):
     def image_view(self, obj):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
+    
+    
+    
+@admin.register(Commandes)
+class CommandesAdmin(admin.ModelAdmin):
+    list_display = ( "name", "phone", "service", "date_add", "publish")
+    date_hierarchy = "date_add"
+    list_per_page = 10
+    list_editable = ["publish"]
+    
+    
