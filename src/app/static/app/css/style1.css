@@ -25,31 +25,47 @@ body{
 /*  Banner  */
 
 .box-header{
+    display: none;
+}
+
+.boxGret-header{
     height: 100vh;
-    width: 100vw;
     position: relative;
 }
 
 
-
-.box-header .box-section-text{
-    max-width: 750px;
+.boxGret-header .box-section-text{
     position: absolute;
-    top: 40%;
+    width: 650px;
+    top: 42%;
     left: 40%;
-    transform: translate(-50% , -50%);
+    transform: translate(-30% , -50%);
 }
 
-.box-header a{
+.boxGret-header .box-section-text h1{
+    font-size: 2.5rem;
+}
+
+.boxGret-header img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.boxGret-header a{
     text-decoration: none;
     color: var(--white);
     font-size: 50px;
     position: absolute;
-    top: 90%;
+    top: 92%;
     left: 50%;
     transform: translate(-50% , -50%);
-}
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  }
 
+  .boxGret-header a:hover{
+    padding-bottom: 10px;
+  }
 
 
 p{
@@ -62,10 +78,8 @@ p{
 }
 
 .header img{
-    width: 100%;
     height: 100%;
-    object-fit: cover;
-    
+    width: 100%;
 }
 
 
@@ -75,14 +89,24 @@ p{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50% , -50%);
-    color: var(--white);
+    transform: translate(-50% , -90%);
+    color: black;
+    font-weight: bold;
+}
+
+.header .header-text .small{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50% , -10%);
+    font-weight: bold;
 }
 
 .container-box{
     width: 60%; 
     margin: 2rem auto
 }
+
+
 
 small span{
     color: var(--red);
@@ -104,7 +128,12 @@ small span{
 
 .form div.input textarea{
     width: 100%;
-    margin-right:.64rem;
+    border: none;
+    margin-top: .3rem;
+    margin-left: .3rem;
+    padding: .9rem;
+    outline: none;
+    background-color: #eeeeee;
 }
 
 .form div.input input, select{
@@ -112,8 +141,8 @@ small span{
     line-height: 1.5;
     margin: 0 .3rem;
     width: 100%;
-    border: 1px solid var(--borderColor) !important;
-    background-color: var(--backgroundColor);
+    border: none /*1px solid var(--borderColor) !important*/;
+    background-color: #eeeeee/* var(--backgroundColor)*/;
     padding: .9rem;
     outline: none;
 }
@@ -143,6 +172,24 @@ button[type='submit'],
     padding: .9rem;
     width: 100%;
 }
+
+
+.form div.input input input::-webkit-input-placeholder {
+    color: #000000;
+  }
+  
+  .form div.input input input:-ms-input-placeholder {
+    color: #000000;
+  }
+  
+  .form div.input input input::-ms-input-placeholder {
+    color: #000000;
+  }
+  
+  .form div.input input input::placeholder {
+    color: #000000;
+  }
+  
 
 .form div.upload{
     display: flex;
@@ -198,12 +245,17 @@ button[type='submit'],
 .form div.condition{
     margin-top: 1rem;
     padding: 1rem;
+    
 }
-.form div.condition span span{
+.form div.condition span span a.condition-generale{
     font-size: 1.2rem;
     color: var(--labelColor);
 }
 
+.condition-generale{
+    text-decoration: none;
+    color: var(--labelColor);
+}
 
 .form div.upload .upload-item.active{
     cursor: unset;
@@ -518,7 +570,7 @@ button[type='submit']{
     }
 
     .hamburger.open span:nth-child(1){
-        transform: translate(0) rotate(135deg);
+        transform: translate(0) rotate(45deg);
     }
 
     .hamburger.open span:nth-child(2){
@@ -527,7 +579,7 @@ button[type='submit']{
     }
 
     .hamburger.open span:nth-child(3){
-        transform: translate(0) rotate(-135deg);
+        transform: translate(0) rotate(-45deg);
     }
 
     .navlinks-container{

@@ -7,6 +7,8 @@ urlpatterns = [
     path('<str:service_slug>/', under_service, name="sous-service"),
     path('service/<str:service_slug>/', under_service_under, name="service-detail-page"),
     path('<str:sous_service_slug>/reservation', reserve, name='reservation'),
+    path('condition-generale', conditionGeneral, name='contionGeneral'),
+    path('contact', contact, name='contact'),
     path('postData', postData, name='postData')
 ]
 

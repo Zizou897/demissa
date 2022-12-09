@@ -15,12 +15,6 @@
     <h1>Et pour que le professionnel puisse intervenir :</h1>
     <small>Les champs comportant un <span>(*)</span> sont obligatoires.</small>
     <form class="form" id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
-        <div class="input">
-            <label for="service">Le sous-service souhaité</label>
-            <div class="input-items">
-                <input type="text" placeholder="service" v-model="service" id="service" name="service" value="{{sous_service_slug}}">
-            </div>
-        </div>
 
         <div class="input">
             <label for="address">Où le professionnel doit-il intervenir ?</label>
@@ -102,7 +96,7 @@
         
         <div class="condition">
             <input type="checkbox" v-model="confirm" name="acceptCondition">
-            <span>J'accepte les <span>conditions générales d'utilisation</span></span>
+            <span>J'accepte les <span><a href="{% url 'contionGeneral' %}" class="condition-generale">conditions générales d'utilisation</a></span></span>
         </div>
         <div class="submit" align=center>
             <button type="submit" @click.prevent='sendData'>

@@ -5,38 +5,84 @@
     <!-- slider section -->
     <!-- end slider section -->
   <style>
-    
-    .box-header {
-      background: url({{get_banner.picture.url}});
-      background-repeat: no-repeat;
-      background-size: cover;
+    @media(max-width: 750px){
+      .boxGret-header{
+        display: none;
+      }
+
+      .box-header{
+        display: block;
+        height: 100vh;
+        position: relative;
+    }
      
+    .box-section-text{
+        width: 100%;
+        max-height: 1000px;
+        position: absolute;
+        top: 42%;
+        left: 40%;
+        transform: translate(-30% , -50%);
+      }
+    
+    .box-section-text h1{
+        font-size: 1.9rem;
     }
     
-    @media(max-width: 750px){
-      .box-header{
-        background: url({{get_banner.picturePhone.url}});
-        background-repeat: no-repeat;
-        background-size: cover;
-        
+    .box-header img{
+        height: 100%;
+        width: 100%;
+    }
+    
+    .box-header a{
+        text-decoration: none;
+        color: var(--white);
+        font-size: 50px;
+        position: absolute;
+        top: 92%;
+        left: 50%;
+        transform: translate(-50% , -50%);
+        box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+      }
+
+      .box-header a:hover{
+        padding-bottom: 10px;
       }
     }
 
   </style>
 
 
-  
-<div id="box-header" class="box-header" >
-  <img class="box-img" src="">
+{% comment "" %}
+<div id="box-header" class="box-header">
   <div class="box-section-text">
-      <h1>Réservez une prestation</h1>
-     <small>Réserver une prestation et payer en espèce ou par mobile money</small>
+      <h1>{{get_text.libele}}</h1>
+     <small>{{get_text.description}}</small>
   </div>
   <a href="#service_section"><i class="fa-solid fa-chevron-down"></i></a>
 </div>
 
+{% endcomment %}
 
 
+<header class="boxGret-header">
+  <img src="{{get_banner.picture.url}}">
+  <div class="box-section-text">
+      <h1>{{get_text.libele}}</h1>
+     <small>{{get_text.description}}</small>
+  </div>
+  <a href="#service_section"><i class="fa-solid fa-chevron-down"></i></a>
+</header>
+
+
+<header class="box-header">
+  <img src="{{get_banner.picturePhone.url}}">
+  <div class="box-section-text">
+      <h1>{{get_text.libele}}</h1>
+     <small>{{get_text.description}}</small>
+  </div>
+  <a href="#service_section"><i class="fa-solid fa-chevron-down"></i></a>
+</header>
 
     <!-- doctor section -->
 
@@ -71,7 +117,7 @@
 <section class="layout_padding bg-light" style=" max-height: 350px; padding: 40px 0 20px 0">
   
   <div class="container">
-    <div class="heading_container row " style="padding: 0 0 0 70px">
+    <div class="heading_container row " style="padding: 0 0 0 10px">
       <h2 sytle="font-weight:bold">Nos sous service les plus demander</h2> 
     </div>
       <div class="row slider_slick gy-3 my-1" >
@@ -153,9 +199,9 @@
           <div class="detail-box">
         
             <ul>
-              <li> <i class="fa-thin fa-shield-check"></i> La satisfaction de nos utilisateurs est notre priorité.</li>
-              <li><i class="bi bi-check-circle"></i> Des jobbers competentes et qualfiés</li>
-              <li><i class="bi bi-check-circle"></i> La rapidité du service et des programme de réservation</li>
+              <li><i class="fa-solid fa-plus"></i> La satisfaction de nos utilisateurs est notre priorité.</li>
+              <li><i class="fa-solid fa-plus"></i> Des jobbers competentes et qualfiés</li>
+              <li><i class="fa-solid fa-plus"></i> La rapidité du service et des programme de réservation</li>
             </ul> 
             <p> 
               <em>{{get_about.description}}</em>

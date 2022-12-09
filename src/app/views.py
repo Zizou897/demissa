@@ -31,7 +31,7 @@ def home(request):
   get_something_service = get_something_services({'publish':True})
   get_under_services = get_under_service({'publish':True})
 
-  template = 'app/index.html'
+  template_name = 'app/index.html'
   context = {
     'page':{
       'title': 'De-missa | Bienvenue',
@@ -48,14 +48,14 @@ def home(request):
     'get_something_service': get_something_service,
     'get_under_services': get_under_services,
   }
-  return render(request, template, context)
+  return render(request, template_name, context)
 
 
 def service(request):
   get_something_service = get_services({'publish':True})
   get_infos_web = get_info_web({'publish':True}) 
   
-  template = 'app/service.html'
+  template_name = 'app/service.html'
   context = {
       'page':{
         'title': 'De-missa | Service',
@@ -66,14 +66,14 @@ def service(request):
     'get_something_service': get_something_service,
       'get_infos_web': get_infos_web,
   }
-  return render(request, template, context)
+  return render(request, template_name, context)
 
 
 def under_service(request, service_slug):
   get_related_services =  get_related_service(service_slug)
   get_infos_web = get_info_web({'publish':True}) 
 
-  template = 'app/under-service.html'
+  template_name = 'app/under-service.html'
   context = {
     'page':{
       'title': 'De-missa | ' + service_slug,
@@ -82,14 +82,14 @@ def under_service(request, service_slug):
     'get_related_services': get_related_services,
       'get_infos_web': get_infos_web,
   }
-  return render(request, template, context)
+  return render(request, template_name, context)
 
 
 def under_service_under(request, service_slug):
   get_related_services =  get_related_service(service_slug)
   get_infos_web = get_info_web({'publish':True})  
   
-  template = 'app/detail-service.html'
+  template_name = 'app/detail-service.html'
   context = {
       'page':{
         'title': 'De-missa | ' + service_slug,
@@ -100,19 +100,24 @@ def under_service_under(request, service_slug):
       'is_link': True,
   }
   print("########1########")
-  return render(request, template, context)
+  return render(request, template_name, context)
 
 
 def reserve(request, sous_service_slug ):
+  
   get_banner = get_banners({'publish':True})
   get_infos_web = get_info_web({'publish':True})
-  template = 'app/reservation.html'
+  
+  template_name = 'app/reservation.html'
   context = {
+    'page':{
+      'title': 'De-missa | Réservation',
+    },
     'get_banner': get_banner,
     'get_infos_web': get_infos_web,
     'sous_service_slug': sous_service_slug
   }
-  return render(request, template, context)
+  return render(request, template_name, context)
 
 
 
@@ -175,3 +180,34 @@ def postData(request):
     'msg': msg
   }
   return JsonResponse(data,safe=False)
+
+
+
+
+def conditionGeneral(request):
+  
+  get_infos_web = get_info_web({'publish':True})
+  
+  template_name = "app/condition.html"
+  context={
+    'page':{
+      'title': 'De-missa | CGU',
+    },
+    'get_infos_web': get_infos_web,
+  }
+  return render(request, template_name, context)
+
+
+def contact(request):
+  
+  get_infos_web = get_info_web({'publish':True})
+  
+  template_name = "app/contact.html"
+  context={
+    'page':{
+      'title': 'De-missa | contact',
+    },
+    'get_infos_web': get_infos_web,
+  }
+  return render(request, template_name, context)
+  

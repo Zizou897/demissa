@@ -527,17 +527,17 @@ a:focus {
   border: none;
   display: inline-block;
   padding: 12px 55px;
-  background-color: #1fab89;
+  background-color: #178066;
   color: #ffffff;
   border-radius: 5px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  border: 1px solid #1fab89;
+  border: 1px solid #178066;
 }
 
 .contact_section .form_container button:hover {
   background-color: transparent;
-  color: #1fab89;
+  color: #169273;
 }
 
 .contact_section .map_container {

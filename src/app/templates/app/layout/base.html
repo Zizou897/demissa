@@ -114,16 +114,15 @@
               Autre page
             </h4>
             <div class="footer_links">
-              <a class="active" href="{% url 'welcome' %}">
-                Notre Assurance
+              <a class="active" href="{% url 'contact' %}">
+                Contactez-nous
               </a>
-              <a class="" href="about.html">
-                Réglement
+              <a class="" href="{% url 'contionGeneral' %}">
+                conditions Générales
               </a>
               <a class="" href="{% url 'service' %}">
                 Mode de facturation
               </a>
-              
             </div>
           </div>
         </div>
@@ -191,7 +190,7 @@
       <div class="row footer-info d-flex justify-content-center">
         
           <p class="">
-            &copy; Copyright <span style="color:green; font-weight:bold"> DE-MISSA.</span> All Rights Reserved
+            &copy; Copyright <span style="color:green; font-weight:bold"> DE-MISSA.</span> Tous droits reservés
             <!--<span id="displayYear"></span> -->
           </p>
          
@@ -314,7 +313,7 @@
       delimiters: ['%{', '}'],
       data:{
           message: '',
-          service: '',
+          service: '{{sous_service_slug}}',
           address: '',
           name: '',
           phone: '',

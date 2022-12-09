@@ -1,0 +1,21 @@
+{% extends 'app/layout/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<header class="header">
+    <img src="https://images.pexels.com/photos/3727469/pexels-photo-3727469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+    <div class="header-text">
+        <h1>Conditions Générales d'Utilisation</h1>
+       <small class="small"><a href="{% url 'welcome' %}" style="color:#178066;">Accueil </a> / CGU</small>
+    </div>
+</header>
+<div class="container-box " >
+    <h1>Conditions Générales d'Utilisation</h1>
+    <small>Vous trouverez ici les conditions génerales d'utilisation du service de DE-MISSA.</small>
+    
+</div>
+
+{% endblock content %}
+
