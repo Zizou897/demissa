@@ -2,6 +2,9 @@
 {% load static %}
 {% block content %}
 
+<style>
+
+</style>
 
 
 <header class="header">
@@ -11,20 +14,55 @@
        <small>Réserver une prestation et payer en espèce ou par mobile money</small>
     </div>
 </header>
-<div class="container-box " >
-    <h1>Et pour que le professionnel puisse intervenir :</h1>
+<div class="container-box" >
+    <h1>{{get_infos_sousService.name}}</h1>
+    <div class="description-service">
+        <p class="btn-description">Description du service  <button class="btnDescription">click ici</button></p>
+        <p class="class-description">Ce service permet de faire ci et de faire ça, en plus de cela {% lorem 2 b random %} </p>
+    </div>
     <small>Les champs comportant un <span>(*)</span> sont obligatoires.</small>
     <form class="form" id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
-        <div class="input">
-            <label for="address">Où le professionnel doit-il intervenir ?</label>
+         <div class="input">
+            <label>Information sur le demandeur :</label>
+            
             <div class="input-items">
-                <input type="text" placeholder="Address *" v-model="address" id="address" name="address" >
+                <input type="text" v-model="name" placeholder="Nom et Prenoms *" name="nomComplet" >
+                <input type="tel" v-model="phone" placeholder="Contact Téléphonique *" >
+            </div>
+            <div class="input-items">
+                
+                <input type="email" v-model="email" placeholder="Email *" name="email" >
+                <textarea type="text" v-model="message" cols="50" rows="2" placeholder="Détails supplémentaires" name="details"></textarea>
             </div>
         </div>
-        
+
         <div class="input">
-            <label>L'intervention est'elle urgente ? {{sous_service_slug}}:</label>
+            <label for="address">Detail sur la prestation</label>
+            <div class="input-items">
+                <input type="text" placeholder="Adresse *" v-model="address" id="address" name="address" >
+            </div>
+
+            <div class="input-items">
+                <input type="date" v-model="date" name="date">
+                <input type="time" v-model="time" name="heure">
+            </div>
+
+            {% comment "" %} <small>Choisissez votre mode de paiement</small>{% endcomment %}
+            <div class="input-items">
+                <select  name="paiementType" v-model="money" >
+                    <option value="" selected>Sélectionner le mode de paiement (*)</option>
+                    <option value="OM">Orange money</option>
+                    <option value="MTN">MTN money</option>
+                    <option value="Moov">Flooz money</option>
+                    <option value="Wave">Wave money</option>
+                    <option value="Cash">payer Cash</option>
+                </select>
+            </div>
+        </div>
+    {% comment "" %}
+        <div class="input">
+            <label>L'intervention est'elle urgente ?:</label>
             <div class="input-items">
                 <select  name="paiementType" v-model="take_intervention" >
                     <option value="" selected>Sélectionner le type de l'intervention (*)</option>
@@ -56,20 +94,8 @@
                 </select>
             </div>
         </div>
-
-        <div class="input">
-            <label>Pour que nous puissions mieux suivre votre intervention :</label>
-            
-            <div class="input-items">
-                <input type="text" v-model="name" placeholder="Noms et Prenoms *" name="nomComplet" >
-                <input type="tel" v-model="phone" placeholder="Contact Téléphonique *" >
-            </div>
-            <div class="input-items">
-                
-                <input type="email" v-model="email" placeholder="Email *" name="email" >
-                <textarea type="text" v-model="message" cols="50" rows="2" placeholder="Détails supplémentaires" name="details"></textarea>
-            </div>
-        </div>
+    {% endcomment %}
+       
         {% comment "" %}
             <div class="input">
                 <label>Code Promo :</label>
@@ -79,7 +105,7 @@
                     <button onclick="return false" class="codepromo">valider</button>
                 </div>
             </div>
-        {% endcomment %}
+        
         <div class="input">
             <label>Concernant le règlement :</label>
             <small>Choisissez votre mode de paiement</small>
@@ -93,14 +119,14 @@
                 </select>
             </div>
         </div>
-        
+        {% endcomment %}
         <div class="condition">
-            <input type="checkbox" v-model="confirm" name="acceptCondition">
-            <span>J'accepte les <span><a href="{% url 'contionGeneral' %}" class="condition-generale">conditions générales d'utilisation</a></span></span>
+            <span><span>En cliquant sur <strong>Demander</strong> vous acceptez les conditions
+                générales d'utilisation de nos services. </span></span>
         </div>
         <div class="submit" align=center>
             <button type="submit" @click.prevent='sendData'>
-                valider
+               <strong>Demander</strong>
             </button>
         </div>
     </form>

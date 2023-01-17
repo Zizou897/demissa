@@ -54,8 +54,11 @@ def get_services(data=dict()):
 
 # Pour la page des sous-services  en relation(service) ------------------------------------------------
 
-def get_sous_service(data=dict()):
-    return SousService.objects.get(**data)
+#def get_sous_service(data=dict()):
+ #   return SousService.objects.filter(**data).exists()
+
+def get_info_sousService(sous_service_slug):
+    return get_object_or_404(SousService, sous_service_slug=sous_service_slug)
 
 def get_related_service(service_slug):
     return get_object_or_404(Service, service_slug=service_slug)

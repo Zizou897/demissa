@@ -118,10 +118,10 @@
                 Contactez-nous
               </a>
               <a class="" href="{% url 'contionGeneral' %}">
-                conditions Générales
+                Conditions Générales
               </a>
               <a class="" href="{% url 'service' %}">
-                Mode de facturation
+                A propos de Nous
               </a>
             </div>
           </div>
@@ -226,6 +226,14 @@
     const navLinksContainer = document.querySelector(".navlinks-container");
     const pictureDevice = document.getElementById("box-header");
     var nav = document.querySelector(".b-nav");
+    const descriptionToggler = document.querySelector(".btnDescription")
+    const descriptionContainer = document.querySelector(".class-description")
+
+    const toggleDescription = () => {
+      descriptionContainer.classList.toggle("open-description")
+      descriptionContainer.style.transition = "0.4s"
+    }
+    descriptionToggler.addEventListener("click", toggleDescription)
 
     window.addEventListener('scroll', function(){
       if(window.pageYOffset > 80){
@@ -277,6 +285,8 @@
       slidesToShow: 4,
       slidesToscroll: 1,
       autoplay: true,
+      infinite: true,
+      pauseOnHover: true,
       autoplayspeed: 2000,
       prevArrow: '<i class="fa-solid fa-angle-right right_arrow">',
       nextArrow: '<i class="fa-solid fa-angle-left left_arrow">',
@@ -284,9 +294,10 @@
         {
           breakpoint: 950,
           settings: {
-            centerMode: true,
-            slidesToShow: 2,
+            slidesToShow: 1,
             slidesToScroll: 1,
+            centerPadding: '50px',
+            centerMode: true,
             infinite: true,
             prevArrow: false,
             nextArrow: false,
@@ -296,6 +307,8 @@
           breakpoint: 600,
           settings: {
             centerMode: true,
+            infinite: true,
+            centerPadding: '50px',
             slidesToShow: 1,
             slidesToScroll: 1,
             prevArrow: false,
@@ -313,7 +326,7 @@
       delimiters: ['%{', '}'],
       data:{
           message: '',
-          service: '{{sous_service_slug}}',
+          service: '{{get_infos_sousService.name}}',
           address: '',
           name: '',
           phone: '',
@@ -335,31 +348,7 @@
         
         sendData(){
           
-            if(this.address === ""){
-              Swal.fire({
-                icon: 'error',
-                title: 'Erreur',
-                text: 'veuillez saisir votre addresse !!!',
-                showConfirmButton: false,
-                timer: 1500
-              })
-            }else if(this.take_intervention === ''){
-              Swal.fire({
-                icon: 'error',
-                title: 'Erreur',
-                text: 'veuillez selectionner le Rendez-vous !!!',
-                showConfirmButton: false,
-                timer: 1500
-              })
-            }else if(this.nbr_pro == ''){
-              Swal.fire({
-                icon: 'error',
-                title: 'Erreur',
-                text: "veuillez sellectionner un professionnel!!! ",
-                showConfirmButton: false,
-                timer: 1500
-              })
-            }else if(this.name == ''){
+            if(this.name == ''){
               Swal.fire({
                 icon: 'error',
                 title: 'Erreur',
@@ -383,6 +372,14 @@
                 showConfirmButton: false,
                 timer: 1500
               })
+            }else if(this.address === ""){
+              Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: 'veuillez saisir votre addresse !!!',
+                showConfirmButton: false,
+                timer: 1500
+              })
             }else if(this.money == ''){
               Swal.fire({
                 icon: 'error',
@@ -392,66 +389,54 @@
                 timer: 1500
               })
             }else{
-              if(this.confirm){
                 
-                let myForm = new FormData();
-                myForm.append('address', this.address)
-                myForm.append('time', this.time)
-                myForm.append('date', this.date)
-                myForm.append('nbr_pro', this.nbr_pro)
-                myForm.append('name', this.name)
-                myForm.append('email', this.email)
-                myForm.append('phone', this.phone)
-                myForm.append('money', this.money)
-                myForm.append('message', this.message)
-                myForm.append('service', this.service)
-                
-  
-                axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
-                axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN'
-                axios.post("{% url 'postData' %}", myForm, {})
-                .then((response) =>{
-                  if(response.data.success){
-                    Swal.fire({
-                      icon: 'success',
-                      title: 'Reservation effectuée',
-                      text: response.data.msg ,
-                      showConfirmButton: false,
-                      timer: 2000
-                    });
-                    this.address = '';
-                    this.time = '';
-                    this.date = '';
-                    this.nbr_pro = '';
-                    this.name = '';
-                    this.email = '';
-                    this.phone = '';
-                    this.message = '';
-                    this.money = '';
-                    this.service = '';
-                    this.confirm = false;
-                  }else{
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Erreur',
-                      text: response.data.msg ,
-                      showConfirmButton: false,
-                      timer: 1500
-                    });
-                    console.log(this.date)
-                  }
-                })
-              }else{
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Erreur',
-                  text: "Veuillez cocher nos  conditions générales d'utilisation" ,
-                  showConfirmButton: false,
-                  timer: 1500
-                })
-              }
-
+              let myForm = new FormData();
+              myForm.append('address', this.address)
+              myForm.append('time', this.time)
+              myForm.append('date', this.date)
+              myForm.append('name', this.name)
+              myForm.append('email', this.email)
+              myForm.append('phone', this.phone)
+              myForm.append('money', this.money)
+              myForm.append('message', this.message)
+              myForm.append('service', this.service)
               
+
+              axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
+              axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN'
+              axios.post("{% url 'postData' %}", myForm, {})
+              .then((response) =>{
+                if(response.data.success){
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Reservation effectuée',
+                    text: response.data.msg ,
+                    showConfirmButton: false,
+                    timer: 2000
+                  });
+                  this.address = '';
+                  this.time = '';
+                  this.date = '';
+                  this.nbr_pro = '';
+                  this.name = '';
+                  this.email = '';
+                  this.phone = '';
+                  this.message = '';
+                  this.money = '';
+                  this.service = '';
+                  this.confirm = false;
+                }else{
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur',
+                    text: response.data.msg ,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  console.log(this.date)
+                }
+              })
+            
             }
          
 

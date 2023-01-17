@@ -15,9 +15,9 @@ from app.models import *
 def verify_email(email):
     try:
         validate_email(email)
-        return False
-    except ValidationError:
         return True
+    except ValidationError:
+        return False
 
 
 def home(request):
@@ -105,9 +105,12 @@ def under_service_under(request, service_slug):
 
 def reserve(request, sous_service_slug ):
   
+  get_infos_sousService = get_info_sousService(sous_service_slug)
   get_banner = get_banners({'publish':True})
   get_infos_web = get_info_web({'publish':True})
-  
+  #sous = SousService.objects.filter('publish' == True)
+  #get_sous_services = sous
+  #print
   template_name = 'app/reservation.html'
   context = {
     'page':{
@@ -115,7 +118,8 @@ def reserve(request, sous_service_slug ):
     },
     'get_banner': get_banner,
     'get_infos_web': get_infos_web,
-    'sous_service_slug': sous_service_slug
+    'sous_service_slug': sous_service_slug,
+    'get_infos_sousService': get_infos_sousService
   }
   return render(request, template_name, context)
 
@@ -155,8 +159,8 @@ def postData(request):
   print(phone)
   reserved,created = Commandes.objects.get_or_create(name=name, phone=phone, service=service)
   if created:
-    print(f'bonjour M {name} Vous avez demande un service de manege le {date} à {time}' )
-    print(f'bonjour M {name} a demande un service de manege le {date} à {time} Son numero est le {phone}')
+    print(f'bonjour M. {name} Vous avez demande un service de manege le {date} à {time}' )
+    print(f'bonjour M. {name} a demande un service de manege le {date} à {time} Son numero est le {phone}')
     reserved.save()
     
     
@@ -173,7 +177,7 @@ def postData(request):
     send_mail(subject, message, from_email, to_list, fail_silently=False)
     print("###############  3  #####################")
     send_mail(subjects, messages, customer_email, to_lists,fail_silently=False)
-    print("###############  3  #####################")
+    print("###############  4  #####################")
   
   data = {
     'success': all_is_true,

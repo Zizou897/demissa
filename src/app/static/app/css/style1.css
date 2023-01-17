@@ -90,23 +90,24 @@ p{
     top: 50%;
     left: 50%;
     transform: translate(-50% , -90%);
-    color: black;
+    color: #ffffff;
     font-weight: bold;
 }
+
+
 
 .header .header-text .small{
     position: absolute;
     left: 50%;
     transform: translate(-50% , -10%);
     font-weight: bold;
+    color: #fff;
 }
 
 .container-box{
     width: 60%; 
     margin: 2rem auto
 }
-
-
 
 small span{
     color: var(--red);
@@ -530,6 +531,9 @@ button[type='submit']{
         align-items: center;
         justify-content: space-between;
     }
+    .b-card-content p{
+        padding-left: 1.5rem;
+    }
 
     /* hamburger */
     .hamburger{
@@ -629,6 +633,12 @@ button[type='submit']{
     }
 
 
+    .class-description {
+        font-size: .8rem;
+        width: 100%;
+        max-height: 100px;
+        
+    }
     
 }
 
@@ -681,4 +691,22 @@ button[type='submit']{
 
   .return i{
     font-size: 26px;
+  }
+
+
+  /*  for the description */
+  .description-service{
+    position: relative;
+  }
+  
+  .class-description {
+    font-size: .9rem;
+    width: 100%;
+    max-height: 500px;
+    display: none;
+    transition: all 0.5s ease;
+  }
+
+  .open-description{
+    display: block;
   }
