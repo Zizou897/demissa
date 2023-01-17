@@ -233,7 +233,7 @@
       descriptionContainer.classList.toggle("open-description")
       descriptionContainer.style.transition = "0.4s"
     }
-    descriptionToggler.addEventListener("click", toggleDescription)
+    
 
     window.addEventListener('scroll', function(){
       if(window.pageYOffset > 80){
@@ -275,6 +275,7 @@
         navLinksContainer.style.transition = "none"
       }
     }).observe(document.body)
+    descriptionToggler.addEventListener("click", toggleDescription)
     
 
 </script>
