@@ -18,7 +18,7 @@
     <h1>{{get_infos_sousService.name}}</h1>
     <div class="description-service">
         <p class="btn-description">Description du service  <button class="btnDescription">click ici</button></p>
-        <p class="class-description">Ce service permet de faire ci et de faire ça, en plus de cela {% lorem 2 b random %} </p>
+        <p class="class-description">{{get_infos_sousService.description}}</p>
     </div>
     <small>Les champs comportant un <span>(*)</span> sont obligatoires.</small>
     <form class="form" id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
