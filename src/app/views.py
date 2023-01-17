@@ -15,9 +15,9 @@ from app.models import *
 def verify_email(email):
     try:
         validate_email(email)
-        return True
-    except ValidationError:
         return False
+    except ValidationError:
+        return True
 
 
 def home(request):
