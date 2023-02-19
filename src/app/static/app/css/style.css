@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif !important; 
   color: #000000;
   background-color: #fefefe;
   overflow-x: hidden;
@@ -55,8 +55,8 @@ body {
 .heading_container h2 {
   position: relative;
   font-weight: bold;
-  margin-bottom: 0;
-
+  margin-bottom: 1rem;
+  margin-top: -1rem;
 }
 
 .heading_container p {

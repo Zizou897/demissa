@@ -86,19 +86,19 @@
 
     <!-- doctor section -->
 
- <section id="service_section" class="doctor_section layout_padding" style="padding-bottom:0px">
+ <section id="service_section" class="doctor_section layout_padding mb-4" style="padding-bottom:5px">
   <div class="container">
     <div class="heading_container ">
-      <h2>
+      <h2 class="title">
         {{page.text_title}}
       </h2>
       <p class="col-md-10 px-0">
         {{page.text_description}}
       </p>
     </div>
-    <div class="row my-4">
+    <div class="row my-4 pb-4">
       {% for service in get_something_service %}
-          <div class="col-md-4 col-xs-6">
+          <div class="col-md-4 mb-4 col-xs-6">
               <a href="{% url 'service-detail-page' service.service_slug %}">
                   <div class="a-card">
                       <img src="{{service.picture.url}}" class="a-card-img" alt="" srcset="">
@@ -118,7 +118,7 @@
   
   <div class="container">
     <div class="heading_container row " style="padding: 0 0 0 10px">
-      <h2 sytle="font-weight:bold">Nos sous service les plus demander</h2> 
+      <h2 class="title" sytle="font-weight:bold">Nos sous service les plus demander</h2> 
     </div>
       <div class="row slider_slick gy-3 my-1" >
           {% for service in get_under_services %}
@@ -126,8 +126,9 @@
                   <div class="b-card ">
                       <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
                       <div class="b-card-content">
-                          <p class="mt-2" style="font-size:20px">{{service.name}}</p>
-                          <p style="color:green">prix entre {{service.price}}</p>
+                          <p class="mt-2" style="font-size:1.1rem">{{service.name}} 
+                            <br><span style="color:green; font-size:1rem">Prix à partir de {{service.price}}</span>
+                          </p>
                       </div>
                   </div>
               </div>
@@ -158,7 +159,7 @@
       -->
       <div class="row row_jobber d-flex justify-content-end" style="background-image: url({% static 'app\images\jober.svg'%});">
         <div class="col-md-6 row_jobber_box">
-          <h2><strong>Dévenir jobber chez DE-MISSA</strong></h2>
+          <h2 class="title"><strong>Dévenir jobber chez DE-MISSA</strong></h2>
           <p sytle="font-style: italic;">
             Vous êtres un jobber, vous aviez des compétences et des
             qualités et vous souhaitez avoir plus de visibilité pour vos
@@ -185,7 +186,7 @@
   <section class="about_section mt-5 layout_margin-bottom">
     <div class="container heading_container">
       <div class="p-3 row ">
-          <h2>Pourquoi choisir DE-MISSA pour tout vos services ?</h2> 
+          <h2 class="title" style="color:#09261f">Pourquoi choisir DE-MISSA pour tout vos services ?</h2> 
       </div>
     </div>
     <div class="container  ">
@@ -200,9 +201,9 @@
           <div class="detail-box">
         
             <ul>
-              <li><i class="fa-solid fa-plus"></i> La satisfaction de nos utilisateurs est notre priorité.</li>
-              <li><i class="fa-solid fa-plus"></i> Des jobbers competentes et qualfiés</li>
-              <li><i class="fa-solid fa-plus"></i> La rapidité du service et des programme de réservation</li>
+              <li>La satisfaction de nos utilisateurs est notre priorité.</li>
+              <li> Des jobbers competentes et qualfiés</li>
+              <li> La rapidité du service et des programme de réservation</li>
             </ul> 
             <p> 
               <em>{{get_about.description}}</em>

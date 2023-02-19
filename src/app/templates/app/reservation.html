@@ -21,20 +21,151 @@
         <p class="class-description">{{get_infos_sousService.description}}</p>
     </div>
     <small>Les champs comportant un <span>(*)</span> sont obligatoires.</small>
+    <div class="">
+      <p class="texte-accroch">
+        Passez à une demande de prestataire en remplissant le formulaire ci
+        dessous
+      </p>
+      <div class="formulaire">
+        <form id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+          <div class="row">
+            <h6 class="titre">Information sur le demandeur</h6>
+          </div>
+          <!-- definition des champs -->
+          <div class="form__group field mb-2">
+            <input
+              required=""
+              placeholder="Name"
+              class="form__field"
+              type="input"
+              v-model="name"
+            />
+            <label class="form__label" for="name">Nom complet*</label>
+          </div>
+          <div class="form__group field mb-2">
+            <input
+              required=""
+              placeholder="Name"
+              class="form__field"
+              type="number"
+              v-model="phone"
+            />
+            <label class="form__label" for="number">Numéro disponible*</label>
+          </div>
+          <div class="form__group field">
+            <input
+              required=""
+              placeholder="Name"
+              class="form__field"
+              type="email"
+              v-model="email"
+            />
+            <label class="form__label" for="email">Email</label>
+          </div>
+
+          <div class="row">
+            <h6 class="titre mt-3">Détail sur la prestation</h6>
+          </div>
+          <div class="form__group field">
+            <input
+              required=""
+              placeholder="Name"
+              class="form__field"
+              type="text"
+              v-model="address"
+            />
+            <label class="form__label" for="name">Lieu de la prestation*</label>
+          </div>
+
+          <div class="form__group field">
+            <select  name="paiementType" class="form__field" v-model="money" >
+              <option  value="" selected>Sélectionner le mode de paiement (*)</option>
+              <option  value="OM">Orange money</option>
+              <option  value="MTN">MTN money</option>
+              <option  value="Moov">Flooz money</option>
+              <option  value="Wave">Wave money</option>
+              <option  value="Cash">payer Cash</option>
+          </select>
+          </div>
+
+          <div class="mt-3">
+            <label for="date_heure" class="mb-3">Date et heure :</label>
+            <div class="row">
+              <div class="col-md-6 bottonm text-center">
+                <input
+                  type="date"
+                  id="start"
+                  name="trip-start"
+                  value=""
+                  min="2023-01-01"
+                  max="2023-12-31"
+                  required
+                  class="form__time"
+                  v-model="date"
+                />
+              </div>
+              <div class="col-md-6 text-center">
+                <input
+                type="time"
+                id="appt"
+                name="appt"
+                min="08:00"
+                max="17:00"
+                required
+                class="form__time"
+                v-model="time"
+              />
+              </div>
+            </div>
+          </div>
+          <p class="text mt-3">
+            En cliquant sur <strong>Demander</strong>
+            vous acceptez nos
+            <a href="http://" class="link-color"
+              >Conditions général d'utilisation</a
+            >
+            de nos services
+          </p>
+          <button
+        type="submit"
+        class="container mt-3 btn pt-2 pb-2 text-white w-50"
+        @click.prevent='sendData'
+      >
+        Demander
+      </button>
+        </form>
+      </div>
+      
+    </div>
+    </div>
+{% comment "" %}
     <form class="form" id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
          <div class="input">
             <label>Information sur le demandeur :</label>
             
+            
             <div class="input-items">
+              <div class="form__group field mb-2">
+                <input
+                  required=""
+                  placeholder="Name"
+                  class="form__field"
+                  type="input"
+                />
+                <label class="form__label" for="name">Nom complet*</label>
+              </div>
+              {% comment "" %}
                 <input type="text" v-model="name" placeholder="Nom et Prenoms *" name="nomComplet" >
                 <input type="tel" v-model="phone" placeholder="Contact Téléphonique *" >
+                
             </div>
             <div class="input-items">
                 
                 <input type="email" v-model="email" placeholder="Email *" name="email" >
                 <textarea type="text" v-model="message" cols="50" rows="2" placeholder="Détails supplémentaires" name="details"></textarea>
             </div>
+            
         </div>
 
         <div class="input">
@@ -48,7 +179,7 @@
                 <input type="time" v-model="time" name="heure">
             </div>
 
-            {% comment "" %} <small>Choisissez votre mode de paiement</small>{% endcomment %}
+            {% comment "" %} <small>Choisissez votre mode de paiement</small>
             <div class="input-items">
                 <select  name="paiementType" v-model="money" >
                     <option value="" selected>Sélectionner le mode de paiement (*)</option>
@@ -60,7 +191,7 @@
                 </select>
             </div>
         </div>
-    {% comment "" %}
+    
         <div class="input">
             <label>L'intervention est'elle urgente ?:</label>
             <div class="input-items">
@@ -119,7 +250,7 @@
                 </select>
             </div>
         </div>
-        {% endcomment %}
+        
         <div class="condition">
             <span><span>En cliquant sur <strong>Demander</strong> vous acceptez les conditions
                 générales d'utilisation de nos services. </span></span>
@@ -130,51 +261,9 @@
             </button>
         </div>
     </form>
+    {% endcomment %}
 </div>
 
+{% comment "" %}###############################{% endcomment %}
+
 {% endblock content %}
-
-
-<!-- if(!this.name){
-            this.errors.push("veuillez saisir votre nom !!!")
-          }
-
-          if(this.address == ' '){
-            Swal.fire({
-              icon: 'error',
-              title: 'Your work has been saved',
-              text: 'veuillez saisir votre nom'
-              showConfirmButton: false,
-              timer: 1500
-            })
-          }
-          else{
-
-          
-          let myForm = new FormData();
-          myForm.append('payment',JSON.stringify(this.commandes))
-
-          axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
-          axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN'
-          axios.post("{% url 'postData' %}", myForm, {})
-              .then((response) =>{
-                if(response.data.success == true){
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-                }
-                else{
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-                }
-              })
-
-          }
-        } -->

@@ -21,27 +21,27 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form_container contact-form">
-            <form action="">
-              <div class="form-row">
+            <form id="contact-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+              <div id="contact-form" class="form-row">
                 <div class="col-lg-6">
                   <div>
-                    <input type="text" placeholder="Nom" />
+                    <input type="text" placeholder="Nom" v-model='name' />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div>
-                    <input type="text" placeholder="Téléphone" />
+                    <input type="text" placeholder="Téléphone" v-model="phone" />
                   </div>
                 </div>
               </div>
               <div>
-                <input type="email" placeholder="Email" />
+                <input type="email" placeholder="Email" v-model="email" />
               </div>
               <div>
-                <input type="text" class="message-box" placeholder="Message" />
+                <input type="text" class="message-box" placeholder="Message" v-model="messages" />
               </div>
               <div class="btn_box" >
-                <button>
+                <button @click.prevent='sendDataContact'>
                   ENVOYER
                 </button>
               </div>

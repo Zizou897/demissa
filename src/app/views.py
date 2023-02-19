@@ -129,7 +129,6 @@ def reserve(request, sous_service_slug ):
 @csrf_exempt
 def postData(request):
 
-
   all_is_true = False
   msg = ''
   
@@ -152,7 +151,7 @@ def postData(request):
   elif len(phones) < 10:
     msg = 'Le numéro de téléphone doit etre e 10 chiffres'
   else:
-    all_is_true, msg = True, 'Vous receverez un email '
+    all_is_true, msg = True, 'Vous receverez un email'
   
   phone = "+"+str(225)+phones
   
@@ -186,6 +185,41 @@ def postData(request):
   return JsonResponse(data,safe=False)
 
 
+@csrf_exempt
+def postDataContact(request):
+
+  all_is_true = False
+  msg = ''
+  
+  name = request.POST.get('name')
+  email = request.POST.get('email')
+  phone = request.POST.get('phone')
+  message = request.POST.get('message')
+  
+  if not name or name.isspace() or not email or email.isspace() or not phone or phone.isspace():
+    msg = 'Veuillez renseigner les champs vides'
+  elif len(phone) < 10:
+    msg = 'Le numéro de téléphone doit etre e 10 chiffres'
+  elif verify_email(email):
+    msg = 'veuillez saisir un addresse Mail correct'
+  else:
+    all_is_true, msg = True, 'Vous receverez un email'
+    print('############# 1 ###############')
+    contact_customer, created = Contact.objects.get_or_create(name=name, email=email, phone=phone, message=message)
+    print(created)
+    if created:
+      msg = "ce message est déjà envoyé"
+    else:
+      contact_customer.save()
+    
+    
+  data = {
+    'success': all_is_true,
+    'msg': msg
+  }
+  return JsonResponse(data,safe=False)
+  
+  
 
 
 def conditionGeneral(request):

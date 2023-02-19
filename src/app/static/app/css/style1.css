@@ -11,9 +11,7 @@ html{
     scroll-behavior: smooth;
 }
 
-body{
-    font-family: 'Roboto', sans-serif;
-}
+
 
 :root{
     --labelColor: rgb(34, 156, 34);
@@ -136,7 +134,7 @@ small span{
     background-color: #eeeeee;
 }
 
-.form div.input input, select{
+.form div.input input{
     height: 50px;
     line-height: 1.5;
     margin: 0 .3rem;
@@ -156,6 +154,7 @@ small span{
 
 input[type="date"],input[type="time"]{
     border-radius: 3px;
+    width: 100%;
 }
 
 button[type='submit'],
@@ -163,15 +162,16 @@ button[type='submit'],
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    background-color: var(--labelColor);
+    background-color: #ff7f2a;
     width: calc(30%);
     color: var(--white);
-}
+    font-weight: bold;
+  }
 
-.form div.input div.input-items select{
+.form div.input div.input-items{
     padding: .9rem;
     width: 100%;
-}
+} 
 
 
 .form div.input input input::-webkit-input-placeholder {
@@ -312,7 +312,9 @@ button[type='submit']{
     background-color: #fff;
     border-radius: 0.4rem;
     overflow: hidden;
-    /*box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);*/
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.08);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.08);
     cursor: pointer;
     transition: 0.2s;
     margin-bottom: 20px;
@@ -327,11 +329,12 @@ button[type='submit']{
 
   .a-card:hover{
     transform: translateY(-0.5%);
-    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.5rem 1rem rgba(12, 12, 12, 0.048);
   }
 
 .a-card-content{
     padding: 1rem;
+    
   }
 
   .a-card-content h3{
@@ -610,7 +613,27 @@ button[type='submit']{
     
 }
 
+@media(max-width: 470px){
+  .container-box{
+    width: 80%; 
+    margin: 2rem auto
+  }
 
+  .bottonm{
+    margin-bottom: 10px;
+  }
+
+  .title{
+    font-size: 1.5rem;
+  }
+
+  .header .header-text{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    width: 70%;
+}
+}
 
 
 
@@ -639,6 +662,10 @@ button[type='submit']{
         
     }
     
+    .container-box{
+      width: 90%; 
+      margin: 2rem auto
+  }
 }
 
   .right_arrow{
@@ -709,3 +736,171 @@ button[type='submit']{
   .open-description{
     display: block;
   }
+
+
+  /*-------------------form-------------------*/
+
+.texte-accroch {
+    color: #1e1c1c;
+    text-align: left;
+  }
+  
+  .link-color {
+    color: #23bb95;
+  }
+  
+  .formulaire {
+     /*border: 1px solid #178066;*/
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .formulaire .titre {
+    color: #ff7f2a;
+    font-weight: bold;
+  }
+  /* Style des champs du formulaire */
+  .form__group {
+    position: relative;
+    padding: 20px 0 0;
+    width: 100%;
+  }
+
+  .form__time{
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #178066;
+    outline: 0;
+    font-size: 17px;
+    color: rgb(27, 25, 25);
+    padding: 4px 0;
+    background: transparent;
+    -webkit-transition: border-color 0.2s;
+    transition: border-color 0.2s;
+  }
+  
+  .form__field::-webkit-input-placeholder {
+    color: transparent;
+  }
+  
+  .form__field::-moz-placeholder {
+    color: transparent;
+  }
+  
+  .form__field:-ms-input-placeholder {
+    color: transparent;
+  }
+  
+  .form__field::-ms-input-placeholder {
+    color: transparent;
+  }
+  
+  .form__field::placeholder {
+    color: transparent;
+  }
+  
+  .form__field:-moz-placeholder-shown ~ .form__label {
+    font-size: 17px;
+    cursor: text;
+    top: 20px;
+  }
+  
+  .form__field:-ms-input-placeholder ~ .form__label {
+    font-size: 17px;
+    cursor: text;
+    top: 20px;
+  }
+  
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 17px;
+    cursor: text;
+    top: 25px;
+  }
+  
+  .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    font-size: 17px;
+    color: rgb(106, 103, 103);
+    pointer-events: none;
+  }
+  
+  .form__field:focus {
+    padding-top: 0px;
+  
+    font-weight: 700;
+    border-width: 3px;
+    -o-border-image: linear-gradient(to right, #116399, #178066);
+    border-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#116399),
+      to(#178066)
+    );
+    border-image: linear-gradient(to right, #d8eee9, #178066);
+    border-image-slice: 1;
+  }
+  
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    font-size: 17px;
+    color: #178066;
+    font-weight: 700;
+  }
+  
+  /* reset input */
+  .form__field:required,
+  .form__field:invalid {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  
+  /* input of date and time */
+  
+  input[type="date"] {
+    border-radius: 5px;
+    width: 100%;
+  
+    outline-style: none;
+  }
+  input[type="time"] {
+    border-radius: 5px;
+    width: 100%;
+  }
+  /* style of btn */
+  .btn {
+    display: block;
+  
+    background-color: #ff7f2a;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+
+  .btnDescription{
+    padding: 2px 5px;
+    background-color: #17806663;
+    transition: all 0.3s;
+  }
+
+  .btnDescription:focus{
+    background-color: #17534463;
+  }
+ 

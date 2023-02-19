@@ -9,6 +9,7 @@ urlpatterns = [
     path('<str:sous_service_slug>/reservation', reserve, name='reservation'),
     path('condition-generale', conditionGeneral, name='contionGeneral'),
     path('contact', contact, name='contact'),
-    path('postData', postData, name='postData')
+    path('postData', postData, name='postData'),
+    path('postDataContact', postDataContact, name='postDataContact'),
 ]
 

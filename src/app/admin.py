@@ -106,7 +106,6 @@ class SousServiceAdmin(admin.ModelAdmin):
     image_view.short_description = "Aperçu des images"
     
     
-    
 @admin.register(Commandes)
 class CommandesAdmin(admin.ModelAdmin):
     list_display = ( "name", "phone", "service", "date_add", "publish")
@@ -115,3 +114,8 @@ class CommandesAdmin(admin.ModelAdmin):
     list_editable = ["publish"]
     
     
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ("name", "phone",  "email",'publish')
+    list_editable = ["publish"]

@@ -163,3 +163,17 @@ class Commandes(Convention):
             to='+2250789773420'
         )
         return super().save(*args,**kwargs)
+    
+
+class Contact(Convention):
+    name = models.CharField(max_length=250)
+    phone = models.CharField(max_length=50)
+    email = models.EmailField(max_length=254)
+    message = models.TextField(default="veuillez nous contacter")
+    
+    class Meta:
+        verbose_name = 'contact'
+        verbose_name_plural = 'contacts'
+        
+    def __str__(self):
+        return self.name
