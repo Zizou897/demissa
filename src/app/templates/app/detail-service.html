@@ -19,16 +19,7 @@
             <div class="col-md-6">
 
                 <div class="detail-box">
-                    <p> 
-                        <em>{{get_related_services.description}}</em>
-                    </p>
-                
-                    <ul>
-                    <li> <i class="fa-thin fa-shield-check"></i> La satisfaction de nos utilisateurs est notre priorité.</li>
-                    <li><i class="bi bi-check-circle"></i> Des jobbers competentes et qualfiés</li>
-                    <li><i class="bi bi-check-circle"></i> La rapidité du service et des programme de réservation</li>
-                    </ul> 
-                
+                    <em>{{get_related_services.description | safe}}</em>
                 </div>
             </div>
         </div>
@@ -38,20 +29,20 @@
   <section class="layout_padding p-5">
     <div class="container ">
         <div class="heading_container  d-flex justify-content-center row  p-3">
-            <h2 sytle="font-weight:bold">Nos sous service les plus demander</h2> 
+            <h2 sytle="font-weight:bold" class="title">Tous nos services {{get_related_services.libele}}</h2> 
         </div>
     </div>
     <div class="container">
         <div class="row gy-3 my-1" >
             {% for service in get_related_services.category_service.all %}
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="b-card ">
                         <a href="{% url 'reservation' service.sous_service_slug %}">
                             <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
                         </a>
                         <div class="b-card-content">
                             <p class="mt-2" style="font-size:1.1rem">{{service.name}} 
-                                <br><span style="color:green; font-size:1rem">Prix à partir de {{service.price}}</span>
+                                <br><span style="color:green; font-size:1rem">À partir de {{service.price}}</span>
                             </p>
                         </div>
                     </div>

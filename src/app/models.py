@@ -1,8 +1,8 @@
 from django.db import models
 
-
-from autoslug import AutoSlugField
 from twilio.rest import Client
+from tinymce.models import HTMLField
+from autoslug import AutoSlugField
 
 # Create your models here.
 
@@ -81,7 +81,7 @@ class AskService(Convention):
 
 class About(Convention):
     title = models.CharField(max_length=50)
-    description = models.TextField()
+    description = HTMLField()
     picture = models.FileField(upload_to='img_about')
 
     class Meta:
@@ -108,9 +108,10 @@ class Social(Convention):
 
 class Service(Convention):
     name = models.CharField(max_length=50)
+    libele = models.CharField(max_length=50)
     picture = models.FileField(upload_to="img_service")
     picture1 = models.FileField(upload_to="img_service")
-    description = models.TextField()
+    description = HTMLField()
     order = models.IntegerField()
     service_slug =  AutoSlugField(populate_from='name')
     
@@ -151,18 +152,6 @@ class Commandes(Convention):
     
     def __str__(self):
         return self.name
-    
-    def save(self, *args, **kwargs):
-        account_sid = 'ACa35b83c179182b2764a0ca2150aaa293' 
-        auth_token = '9818fd2a3e9607c5bc1bacc436f0ff31' 
-        client = Client(account_sid, auth_token) 
-        
-        message = client.messages.create(
-            body=f'bonjour M {self.name} Vous avez demande un service de {self.service} \n\nMerci de vouloir patienter afin qu\'un agent vous appelle ',
-            from_='+13608033691',
-            to='+2250789773420'
-        )
-        return super().save(*args,**kwargs)
     
 
 class Contact(Convention):

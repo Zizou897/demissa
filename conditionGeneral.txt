@@ -155,7 +155,7 @@ Etape 2 :  Une fois sur la page des SERVICE, L’Utilisateur choisit un grand se
 
 Etape 3 :  Une fois sur la page des SOUS-SERVICES, L’Utilisateur choisit un sous-service qui le convient
 
-Etape 4 :  Après avoir le sous-service, L’Utilisateur sera dirigé sur la page «Réservation » afin de planifier une Intervention en ligne.
+Etape 4 :  Après avoir choisi le sous-service, L’Utilisateur sera dirigé sur la page «Réservation » afin de planifier une Intervention en ligne.
 
 Etape 5 : L’Utilisateur saisit dans le formulaire de demande d’Intervention les informations détaillées ci-dessous.
 	Ces informations seront ensuite stockées dans nos systèmes informatiques.

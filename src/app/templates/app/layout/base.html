@@ -21,6 +21,7 @@
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
   <!--owl slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -99,13 +100,13 @@
             </h4>
             <div class="footer_links">
               <a class="active" href="{% url 'service' %}">
-                Démander un service
+                Demander un service
               </a>
               <a class="" href="about.html">
                 Suivre une formation
               </a>
               <a class="" href="{% url 'service' %}">
-                Dévenir jobber
+                Devenir jobber
               </a>
               
             </div>
@@ -115,13 +116,10 @@
         <div class="col-md-6 col-lg-2 mx-auto footer_col">
           <div class="footer_link_box">
             <h4 style="text-decoration: underline;">
-              Autre page
+              Autres pages
             </h4>
             <div class="footer_links">
-              <a class="active" href="{% url 'contact' %}">
-                Contactez-nous
-              </a>
-              <a class="" href="{% url 'contionGeneral' %}">
+              <a class="active" href="{% url 'contionGeneral' %}">
                 Conditions Générales
               </a>
               <a class="" href="{% url 'service' %}">
@@ -134,7 +132,7 @@
         <div class="col-md-6 col-lg-3 mx-auto footer_col">
           <div class="footer_contact">
             <h4 style="text-decoration: underline;">
-              Contacter nous
+              Contactez-nous
             </h4>
             <div class="contact_link_box">
               <a href="">
@@ -171,13 +169,13 @@
         <div class="col-md-6 col-lg-3 mx-auto footer_col">
           <div class="footer_detail">
             <h4 style="text-decoration: underline;">
-              A propos de DE-MISSA
+              DE-MISSA
             </h4>
             <p>
-              DE-MISSA est une start-up innovatrice,
-              qui intervient dans le secteur informel
-              des petits metiers.
-              Avec un nouveau concept qui est Jobber
+              DE-MISSA est une entreprise de services à la personne, 
+              spécialisée dans les services de proximité à la personne. 
+              Notre réseau de professionnels vous apporte le service nécessaire 
+              pour tous vos travaux de la vie quotidienne.
             </p>
           </div>
         </div>
@@ -232,6 +230,9 @@
     var nav = document.querySelector(".b-nav");
     const descriptionToggler = document.querySelector(".btnDescription")
     const descriptionContainer = document.querySelector(".class-description")
+    
+
+    
 
     const toggleDescription = () => {
       descriptionContainer.classList.toggle("open-description")
@@ -279,10 +280,20 @@
         navLinksContainer.style.transition = "none"
       }
     }).observe(document.body)
-    descriptionToggler.addEventListener("click", toggleDescription)
+    descriptionToggler.addEventListener("click", toggleDescription);
+
     
+   
+</script>
+<script>
+  const btnBackService = document.getElementById("btnBack")
+
+  btnBackService.addEventListener("click", function(){
+    window.history.back(); 
+  });
 
 </script>
+
 
   <script>
 
@@ -299,7 +310,7 @@
         {
           breakpoint: 950,
           settings: {
-            slidesToShow: 1,
+            slidesToShow: 2,
             slidesToScroll: 1,
             centerPadding: '50px',
             centerMode: true,
@@ -312,6 +323,7 @@
           breakpoint: 600,
           settings: {
             centerMode: true,
+            autoplay: false,
             infinite: true,
             centerPadding: '50px',
             slidesToShow: 1,

@@ -22,6 +22,7 @@ urlpatterns = [
     
     # Pour la vue de l'appli
    path('', include('app.urls')),
+   path('tinymce/', include('tinymce.urls')),
 ]
 
 

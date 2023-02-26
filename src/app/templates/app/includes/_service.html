@@ -2,7 +2,7 @@
 <section id="sservice_section" class="doctor_section layout_padding">
     <div class="container">
       <div class="heading_container ">
-        <h2>
+        <h2 class="title">
           {{page.text_title}}
         </h2>
         <p class="col-md-10 px-0">
@@ -12,7 +12,7 @@
       <div class="row gy-5 my-4">
 
         {% for service in get_something_service %}
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 col-sm-6 mb-4">
                 <a href="{% url 'sous-service' service.service_slug %}">
                     <div class="a-card">
                         <img src="{{service.picture.url}}" class="a-card-img" alt="" srcset="">

@@ -3,28 +3,46 @@
 {% block content %}
   <!-- department section -->
 
+  <style>
+    .btnBack{
+        background-color: transparent;
+        font-size: 1.5rem;
+    }
+    @media(max-width: 767px){
+        .scroll-div{
+            overflow: hidden;
+            overflow-y: scroll;
+            height: 700px;
+        }
+          
+    }
+  </style>
+
   <div class="return">
     <a href="{% url 'welcome' %}"><i class="fa-solid fa-xmark"></i></a>
   </div>
 
 
 <section class="layout_padding p-5">
-    <div class="container ">
+    <div class="container d-flex justify-content-between">
         <div class="heading_container  d-flex justify-content-center row  p-3">
-            <h2 sytle="font-weight:bold">Tous nos services {{get_related_services.name}}</h2> 
+            <h2 class="title" sytle="font-weight:bold">Tous nos services {{get_related_services.libele}}</h2> 
+        </div>
+        <div class="back">
+            <button id="btnBack" class="btnBack"><i class="fa-solid fa-arrow-left"></i></button>
         </div>
     </div>
-    <div class="container">
+    <div class="container scroll-div">
         <div class="row gy-3 my-1" >
             {% for service in get_related_services.category_service.all %}
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="b-card ">
                         <a href="{% url 'reservation' service.sous_service_slug %}">
                             <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
                         </a>
                         <div class="b-card-content">
                             <p class="mt-2" style="font-size:1.1rem">{{service.name}} 
-                                <br><span style="color:green; font-size:1rem">Prix à partir de {{service.price}}</span>
+                                <br><span style="color:green; font-size:1rem">À partir de {{service.price}}</span>
                             </p>
                         </div>
                     </div>

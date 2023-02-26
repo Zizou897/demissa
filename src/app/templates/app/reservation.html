@@ -29,7 +29,7 @@
       <div class="formulaire">
         <form id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
           <div class="row">
-            <h6 class="titre">Information sur le demandeur</h6>
+            <h6 class="titre pl-2">Information sur le demandeur</h6>
           </div>
           <!-- definition des champs -->
           <div class="form__group field mb-2">
@@ -64,7 +64,7 @@
           </div>
 
           <div class="row">
-            <h6 class="titre mt-3">Détail sur la prestation</h6>
+            <h6 class="titre mt-3 pl-2">Détail sur la prestation</h6>
           </div>
           <div class="form__group field">
             <input
@@ -119,19 +119,16 @@
             </div>
           </div>
           <p class="text mt-3">
-            En cliquant sur <strong>Demander</strong>
+            En cliquant sur <strong>Valider</strong>
             vous acceptez nos
-            <a href="http://" class="link-color"
-              >Conditions général d'utilisation</a
-            >
-            de nos services
+            <a href="{% url 'contionGeneral' %}" class="link-color">Conditions général d'utilisation</a>
           </p>
           <button
         type="submit"
         class="container mt-3 btn pt-2 pb-2 text-white w-50"
         @click.prevent='sendData'
       >
-        Demander
+        Valider
       </button>
         </form>
       </div>
@@ -257,7 +254,7 @@
         </div>
         <div class="submit" align=center>
             <button type="submit" @click.prevent='sendData'>
-               <strong>Demander</strong>
+               <strong>Valider</strong>
             </button>
         </div>
     </form>
