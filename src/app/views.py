@@ -30,12 +30,13 @@ def home(request):
   get_socials =   get_social({'publish':True})
   get_something_service = get_something_services({'publish':True})
   get_under_services = get_under_service({'publish':True})
+  get_referencements = get_referencement({'publish':True})
 
   template_name = 'app/index.html'
   context = {
     'page':{
       'title': 'De-missa | Bienvenue',
-      'text_title': 'De quels services avez-vous besoins ?',
+      'text_title': 'De quels services avez-vous besoin ?',
       'text_description': 'Pour chaque situation, trouvez le prestataire dont les compétences répondent à vos attentes et à votre niveau d’exigence.',
     },
     'get_infos_web': get_infos_web,
@@ -47,14 +48,18 @@ def home(request):
     'get_socials': get_socials,
     'get_something_service': get_something_service,
     'get_under_services': get_under_services,
+     #------------------------------------------
+    'get_referencements': get_referencements,
+
   }
   return render(request, template_name, context)
 
 
 def service(request):
   get_something_service = get_services({'publish':True})
-  get_infos_web = get_info_web({'publish':True}) 
-  
+  get_infos_web = get_info_web({'publish':True})
+  get_referencements = get_referencement({'publish':True})
+
   template_name = 'app/service.html'
   context = {
       'page':{
@@ -64,14 +69,16 @@ def service(request):
       },
     'is_true': True,
     'get_something_service': get_something_service,
-      'get_infos_web': get_infos_web,
+     'get_infos_web': get_infos_web,
+     #-----------------------------------
+    'get_referencements': get_referencements,
   }
   return render(request, template_name, context)
 
 
 def under_service(request, service_slug):
   get_related_services =  get_related_service(service_slug)
-  get_infos_web = get_info_web({'publish':True}) 
+  get_infos_web = get_info_web({'publish':True})
 
   template_name = 'app/under-service.html'
   context = {
@@ -87,8 +94,9 @@ def under_service(request, service_slug):
 
 def under_service_under(request, service_slug):
   get_related_services =  get_related_service(service_slug)
-  get_infos_web = get_info_web({'publish':True})  
-  
+  get_infos_web = get_info_web({'publish':True})
+  get_referencements = get_referencement({'publish':True})
+
   template_name = 'app/detail-service.html'
   context = {
       'page':{
@@ -98,13 +106,15 @@ def under_service_under(request, service_slug):
       'get_related_services' : get_related_services,
       'get_infos_web': get_infos_web,
       'is_link': True,
+      #---------------------------------------
+      'get_referencements': get_referencements,
   }
   print("########1########")
   return render(request, template_name, context)
 
 
 def reserve(request, sous_service_slug ):
-  
+
   get_infos_sousService = get_info_sousService(sous_service_slug)
   get_banner = get_banners({'publish':True})
   get_infos_web = get_info_web({'publish':True})
@@ -131,7 +141,7 @@ def postData(request):
 
   all_is_true = False
   msg = ''
-  
+
   address = request.POST.get('address')
   time = request.POST.get('time')
   date = request.POST.get('date')
@@ -143,7 +153,7 @@ def postData(request):
   money = request.POST.get('money')
   service = request.POST.get('service')
 
-          
+
   if not name or name.isspace() or not email or email.isspace() or not phones or phones.isspace():
     msg = 'Veuillez renseigner les champs vides'
   elif verify_email(email):
@@ -152,19 +162,19 @@ def postData(request):
     msg = 'Le numéro de téléphone doit etre e 10 chiffres'
   else:
     all_is_true, msg = True, 'Vous recevrez un email'
-  
+
   phone = "+"+str(225)+phones
-  
+
   print(phone)
   reserved,created = Commandes.objects.get_or_create(name=name, phone=phone, service=service)
- 
- 
+
+
   if created:
     print(f'bonjour M. {name} Vous avez demande un service de {service} le {date} à {time}' )
     print(f'bonjour M. {name} a demande un service de {service} le {date} à {time} Son numero est le {phone}')
     msg = "Votre réservation est déjà en cour de traitement"
-    
-  else: 
+
+  else:
     subject = "Demande de service chez DE-MISSA"
     subjects = "DE-MISSA"
     message = f"Bonjour M./Mde/Mdle {name}  \nVous avez demande un service de manege pour {date} à {time}\n pour vos services à domicile \n\n\n\n MERCI POUR VOTRE CONFIANCE"
@@ -174,14 +184,14 @@ def postData(request):
     print("###############  1  #####################")
     to_list = [email]
     to_lists = [settings.EMAIL_HOST_USER]
-    print("###############  2  #####################")         
+    print("###############  2  #####################")
     send_mail(subject, message, from_email, to_list, fail_silently=False)
     print("###############  3  #####################")
     send_mail(subjects, messages, customer_email, to_lists,fail_silently=False)
     reserved.save()
     msg="Réservation effectuée"
     print("###############  4  #####################")
-  
+
   data = {
     'success': all_is_true,
     'msg': msg
@@ -194,12 +204,12 @@ def postDataContact(request):
 
   all_is_true = False
   msg = ''
-  
+
   name = request.POST.get('name')
   email = request.POST.get('email')
   phone = request.POST.get('phone')
   message = request.POST.get('message')
-  
+
   if not name or name.isspace() or not email or email.isspace() or not phone or phone.isspace():
     msg = 'Veuillez renseigner les champs vides'
   elif len(phone) < 10:
@@ -215,21 +225,21 @@ def postDataContact(request):
       msg = "ce message est déjà envoyé"
     else:
       contact_customer.save()
-    
-    
+
+
   data = {
     'success': all_is_true,
     'msg': msg
   }
   return JsonResponse(data,safe=False)
-  
-  
+
+
 
 
 def conditionGeneral(request):
-  
+
   get_infos_web = get_info_web({'publish':True})
-  
+
   template_name = "app/condition.html"
   context={
     'page':{
@@ -241,9 +251,9 @@ def conditionGeneral(request):
 
 
 def contact(request):
-  
+
   get_infos_web = get_info_web({'publish':True})
-  
+
   template_name = "app/contact.html"
   context={
     'page':{
@@ -252,4 +262,13 @@ def contact(request):
     'get_infos_web': get_infos_web,
   }
   return render(request, template_name, context)
-  
+
+
+def sitemaps_xml(request):
+
+  template_name = 'app/sitemap.xml'
+  context = {
+
+  }
+  return render(request, template_name, context)
+

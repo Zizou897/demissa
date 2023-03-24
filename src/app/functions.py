@@ -35,7 +35,7 @@ def get_social(data=dict()):
 
 
 def get_something_services(data=dict()):
-    return Service.objects.filter(**data).order_by('order')[:6]
+    return Service.objects.filter(**data).order_by('order')[:9]
 
 
 def get_under_service(data=dict()):
@@ -65,4 +65,9 @@ def get_related_service(service_slug):
 
 
 #------------------------------------------------------------------------------------
+
+
+def get_referencement(data=dict()):
+    return Referencement.objects.filter(**data).first()
+
 

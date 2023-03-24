@@ -15,7 +15,7 @@
             <div class="col-md-4 col-sm-6 mb-4">
                 <a href="{% url 'sous-service' service.service_slug %}">
                     <div class="a-card">
-                        <img src="{{service.picture.url}}" class="a-card-img" alt="" srcset="">
+                        <img src="{{service.picture.url}}" class="a-card-img" alt="{{service.name}}" srcset="">
                         <div class="a-card-content">
                             <h3 class="a-card-header text-dark" style="font-size: 25px">{{service.name}}</h3>
                         </div>

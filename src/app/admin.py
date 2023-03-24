@@ -10,7 +10,7 @@ class WebAdmin(admin.ModelAdmin):
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
-    
+
     def image_view(self, obj):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
@@ -23,7 +23,7 @@ class BannerAdmin(admin.ModelAdmin):
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
-    
+
     def image_view(self, obj):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
@@ -45,7 +45,7 @@ class QualityAdmin(admin.ModelAdmin):
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
-    
+
     def image_view(self, obj):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
@@ -57,7 +57,7 @@ class AskServiceAdmin(admin.ModelAdmin):
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
-    
+
     def image_view(self, obj):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
@@ -69,7 +69,7 @@ class AboutAdmin(admin.ModelAdmin):
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
-    
+
     def image_view(self, obj):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
@@ -88,7 +88,7 @@ class ServiceAdmin(admin.ModelAdmin):
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
-    
+
     def image_view(self, obj):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
@@ -100,22 +100,32 @@ class SousServiceAdmin(admin.ModelAdmin):
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
-    
+
     def image_view(self, obj):
         return mark_safe(f'<img src="{obj.picture.url}" style="height:100px; width:150px">')
     image_view.short_description = "Aperçu des images"
-    
-    
+
+
 @admin.register(Commandes)
 class CommandesAdmin(admin.ModelAdmin):
     list_display = ( "name", "phone", "service", "date_add", "publish")
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
-    
-    
+
+
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
     list_display = ("name", "phone",  "email",'publish')
+    list_editable = ["publish"]
+
+
+
+
+@admin.register(Referencement)
+class ReferencementAdmin(admin.ModelAdmin):
+    list_display = ("author", "title", "description", "keyword", "publish")
+    date_hierarchy = "date_add"
+    list_per_page = 10
     list_editable = ["publish"]

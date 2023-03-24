@@ -11,5 +11,9 @@ urlpatterns = [
     path('contact', contact, name='contact'),
     path('postData', postData, name='postData'),
     path('postDataContact', postDataContact, name='postDataContact'),
+
+
+    #for sitemap
+    path('sitemap.xml', sitemaps_xml ),
 ]
 

@@ -2,18 +2,18 @@
 {% load static %}
 {% block content %}
   <!-- department section -->
-  
+
   <section class="about_section layout_margin-bottom">
     <div class="container">
       <div class="p-5 row">
-          
+
       </div>
     </div>
     <div class="container  ">
         <div class="row">
             <div class="col-md-6 ">
             <div class="img-box">
-                <img src="{{get_related_services.picture1.url}}" alt="">
+                <img src="{{get_related_services.picture1.url}}" alt="{{get_related_services.name}}">
             </div>
             </div>
             <div class="col-md-6">
@@ -26,10 +26,10 @@
     </div>
   </section>
 
-  <section class="layout_padding p-5">
+  <section class="p-5">
     <div class="container ">
-        <div class="heading_container  d-flex justify-content-center row  p-3">
-            <h2 sytle="font-weight:bold" class="title">Tous nos services {{get_related_services.libele}}</h2> 
+        <div class="heading_container  d-flex justify-content-center row">
+            <h2 sytle="font-weight:bold" class="title">Tous nos services {{get_related_services.libele}}</h2>
         </div>
     </div>
     <div class="container">
@@ -38,10 +38,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="b-card ">
                         <a href="{% url 'reservation' service.sous_service_slug %}">
-                            <img src="{{service.picture.url}}" class="b-card-img" alt="" srcset="">
+                            <img src="{{service.picture.url}}" class="b-card-img" alt="{{service.name}}" srcset="">
                         </a>
                         <div class="b-card-content">
-                            <p class="mt-2" style="font-size:1.1rem">{{service.name}} 
+                            <p class="mt-2" style="font-size:1.1rem">{{service.name}}
                                 <br><span style="color:green; font-size:1rem">À partir de {{service.price}}</span>
                             </p>
                         </div>

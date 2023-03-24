@@ -18,7 +18,7 @@
     <h1>{{get_infos_sousService.name}}</h1>
     <div class="description-service">
         <p class="btn-description">Description du service  <button class="btnDescription">click ici</button></p>
-        <p class="class-description">{{get_infos_sousService.description}}</p>
+        <p class="class-description">{{get_infos_sousService.description | safe}}</p>
     </div>
     <small>Les champs comportant un <span>(*)</span> sont obligatoires.</small>
     <div class="">
@@ -132,7 +132,7 @@
       </button>
         </form>
       </div>
-      
+
     </div>
     </div>
 {% comment "" %}
@@ -140,8 +140,8 @@
 
          <div class="input">
             <label>Information sur le demandeur :</label>
-            
-            
+
+
             <div class="input-items">
               <div class="form__group field mb-2">
                 <input
@@ -155,14 +155,14 @@
               {% comment "" %}
                 <input type="text" v-model="name" placeholder="Nom et Prenoms *" name="nomComplet" >
                 <input type="tel" v-model="phone" placeholder="Contact Téléphonique *" >
-                
+
             </div>
             <div class="input-items">
-                
+
                 <input type="email" v-model="email" placeholder="Email *" name="email" >
                 <textarea type="text" v-model="message" cols="50" rows="2" placeholder="Détails supplémentaires" name="details"></textarea>
             </div>
-            
+
         </div>
 
         <div class="input">
@@ -188,7 +188,7 @@
                 </select>
             </div>
         </div>
-    
+
         <div class="input">
             <label>L'intervention est'elle urgente ?:</label>
             <div class="input-items">
@@ -206,7 +206,7 @@
                 <input type="time" v-model="time" name="heure">
             </div>
         </div>
-       
+
 
         <div class="input">
             <label>Nombre de professionnel :</label>
@@ -223,7 +223,7 @@
             </div>
         </div>
     {% endcomment %}
-       
+
         {% comment "" %}
             <div class="input">
                 <label>Code Promo :</label>
@@ -233,7 +233,7 @@
                     <button onclick="return false" class="codepromo">valider</button>
                 </div>
             </div>
-        
+
         <div class="input">
             <label>Concernant le règlement :</label>
             <small>Choisissez votre mode de paiement</small>
@@ -247,7 +247,7 @@
                 </select>
             </div>
         </div>
-        
+
         <div class="condition">
             <span><span>En cliquant sur <strong>Demander</strong> vous acceptez les conditions
                 générales d'utilisation de nos services. </span></span>

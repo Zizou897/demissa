@@ -19,7 +19,7 @@ class Web(Convention):
     name = models.CharField(max_length=50)
     picture = models.FileField(upload_to='img_web')
     description = models.TextField()
-    
+
     class Meta:
         verbose_name = "Info du site"
         verbose_name_plural = "Infos du site"
@@ -31,26 +31,26 @@ class Banner(Convention):
     title = models.CharField(max_length=250)
     picture = models.FileField(upload_to='img_banner')
     picturePhone = models.FileField(upload_to='img_banner')
-    
+
     class Meta:
         verbose_name = "Banner"
         verbose_name_plural = "Banners"
 
     def __str__(self):
         return self.title
-    
+
 
 class Text(Convention):
     libele = models.TextField()
     description = models.TextField()
-    
+
     class Meta:
         verbose_name = "Text"
         verbose_name_plural = "Texts"
 
     def __str__(self):
         return self.libele
-    
+
 
 
 class Quality(Convention):
@@ -61,7 +61,7 @@ class Quality(Convention):
     class Meta:
         verbose_name = "Quality"
         verbose_name_plural = "Qualities"
-    
+
     def __str__(self):
         return self.title
 
@@ -74,10 +74,10 @@ class AskService(Convention):
     class Meta:
         verbose_name = "Procedure"
         verbose_name_plural = "Procedures"
-    
+
     def __str__(self):
         return self.title
-    
+
 
 class About(Convention):
     title = models.CharField(max_length=50)
@@ -96,14 +96,14 @@ class Social(Convention):
     name = models.CharField(max_length=50)
     icon = models.CharField(max_length=50)
     link = models.URLField(max_length=200)
-    
+
     class Meta:
         verbose_name = "Reseaux social"
         verbose_name_plural = "Reseaux sociaux"
-    
+
     def __str__(self):
         return self.name
-    
+
 
 
 class Service(Convention):
@@ -114,7 +114,7 @@ class Service(Convention):
     description = HTMLField()
     order = models.IntegerField()
     service_slug =  AutoSlugField(populate_from='name')
-    
+
     class Meta:
         verbose_name = "Service"
         verbose_name_plural = "Services"
@@ -127,12 +127,12 @@ class SousService(Convention):
     name = models.CharField(max_length=50)
     picture = models.FileField(upload_to="img_service")
     libele = models.TextField()
-    description = models.TextField()
+    description = HTMLField()
     order = models.IntegerField()
     price = models.CharField(max_length=100)
     sous_service_slug =  AutoSlugField(populate_from='name')
     service = models.ForeignKey("Service", related_name="category_service", on_delete=models.SET_NULL, null=True)
-    
+
     class Meta:
         verbose_name = "Sous Service"
         verbose_name_plural = "Sous Services"
@@ -145,24 +145,39 @@ class Commandes(Convention):
     name = models.CharField(max_length=250)
     phone = models.CharField(max_length=50)
     service = models.CharField(max_length=50)
-    
+
     class Meta:
         verbose_name = 'Reservation'
         verbose_name_plural = 'Reservations'
-    
+
     def __str__(self):
         return self.name
-    
+
 
 class Contact(Convention):
     name = models.CharField(max_length=250)
     phone = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
     message = models.TextField(default="veuillez nous contacter")
-    
+
     class Meta:
         verbose_name = 'contact'
         verbose_name_plural = 'contacts'
-        
+
     def __str__(self):
         return self.name
+
+
+
+class Referencement(Convention):
+    author = models.TextField()
+    title = models.TextField()
+    description = models.TextField()
+    keyword = models.TextField()
+
+    class Meta:
+        verbose_name = 'RÉFÉRENCEMENT'
+        verbose_name_plural = 'RÉFÉRENCEMENT'
+
+    def __str__(self):
+        return self.title
