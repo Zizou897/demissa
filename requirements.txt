@@ -4,4 +4,5 @@ django-cors-headers==3.13.0
 django-jazzmin==2.6.0
 django-tinymce==3.5.0
 Pillow==9.2.0
+sweetify==2.3.1
 twilio==7.15.4

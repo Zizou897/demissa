@@ -129,3 +129,12 @@ class ReferencementAdmin(admin.ModelAdmin):
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
+
+
+
+@admin.register(Prestatire)
+class PrestatireAdmin(admin.ModelAdmin):
+    list_display = ("name", "phone", "email", "date_time", "publish")
+    date_hierarchy = "date_add"
+    list_per_page = 10
+    list_editable = ["publish"]

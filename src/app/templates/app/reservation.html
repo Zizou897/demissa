@@ -78,7 +78,7 @@
           </div>
 
           <div class="form__group field">
-            <select  name="paiementType" class="form__field" v-model="money" >
+            <select  name="paiementType" class="form__field" v-model="money">
               <option  value="" selected>Sélectionner le mode de paiement (*)</option>
               <option  value="OM">Orange money</option>
               <option  value="MTN">MTN money</option>
@@ -100,7 +100,7 @@
                   min="2023-01-01"
                   max="2023-12-31"
                   required
-                  class="form__time"
+                  class="form__time disablePast"
                   v-model="date"
                 />
               </div>

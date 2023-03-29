@@ -1,0 +1,279 @@
+{% extends 'app/layout/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+</style>
+
+
+<header class="header" style="height:60vh">
+    <img src="{{get_banner.pictureInscription.url}}">
+    <div class="header-text" style="color:#000">
+        <h1>Devenir prestataire</h1>
+       <small>Réserver une prestation et payer en espèce ou par mobile money</small>
+    </div>
+</header>
+<div class="container-box" >
+    
+    
+    <div class="">
+      <p class="texte-accroch" style="font-weight:bold">
+       Vous souhaitez appartenir à l'équipe Jobber de DE-MISSA
+        afin booster vos économies et étendre votre service dans
+        toute les localités d'Abidjan, sans plus tarder remplissez le
+        formulaire ci-dessous.
+      </p>
+      <div class="formulaire">
+    <form id="" action=" {% url 'inscription' %} " method="POST" enctype="multipart/form-data"> {% csrf_token %}
+          <div class="row">
+            <h6 class="titre pl-2">Information sur le prestataire</h6>
+          </div>
+          <!-- definition des champs -->
+          <div class="form__group field mb-2">
+            <input
+             
+              placeholder="Name"
+              class="form__field"
+              type="input"
+              name="name"
+            />
+            <label class="form__label" for="name">Nom complet*</label>
+          </div>
+          <div class="form__group field mb-2">
+            <input
+              
+              placeholder="Name"
+              class="form__field"
+              type="number"
+              name="phone"
+            />
+            <label class="form__label" for="number">Numéro disponible*</label>
+          </div>
+          <div class="form__group field">
+            <input
+              
+              placeholder="Name"
+              class="form__field"
+              type="email"
+              name="email"
+            />
+            <label class="form__label" for="email">Email</label>
+          </div>
+
+          <div class="form__group field">
+            <input
+              
+              placeholder="Name"
+              class="form__field"
+              type="text"
+              name="address"
+            />
+            <label class="form__label" for="name">Lieu de Residence*</label>
+          </div>
+
+          <div class="row">
+            <h6 class="titre mt-3 pl-2">Détail sur la prestation</h6>
+          </div>
+          <p class="texte-accroch mb-0" style="font-weight:500">
+            Sélectionner au moins trois service dans
+           laquelle vous voulez prester *
+          </p>
+
+          <div class="form__group field">
+            <select  name="service" class="form__field">
+              <option  value="1" selected>Sélectionner des services (*)</option>
+              {% for service in get_all_under_services %}
+                <option  value="{{service.sous_service_slug}}">{{service.name}}</option>
+              {% endfor %}
+          </select>
+          </div>
+
+          <div class="row">
+            <h6 class="titre mt-3 pl-2">Autres informations</h6>
+          </div>
+          <p class="texte-accroch mb-0" style="font-weight:500">
+            Avant de postuler, rassurerez vous que vous aurez un entretient dans notre local
+            à votre date et heure de disponibilité et le dépôt de certaines pièce qui vous seront
+            préciser par un de nos agents
+          </p>
+
+          <div class="mt-3">
+            <label for="date_heure" class="mb-3">Date et heure pour l'entretient*</label>
+            <div class="row">
+              <div class="col-md-6 bottonm text-center">
+                <input
+                  type="date"
+                  id="start"
+                  name="date"
+                  value=""
+                  min="2023-01-01"
+                  max="2023-12-31"
+                 
+                  class="form__time"
+                  
+                />
+              </div>
+              <div class="col-md-6 text-center">
+                <input
+                type="time"
+                id="appt"
+                name="time"
+                min="08:00"
+                max="17:00"
+               
+                class="form__time"
+                
+              />
+              </div>
+            </div>
+          </div>
+          
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="confirm">
+              <p class="text mt-3">En cliquant sur <strong>Valider</strong>
+                vous acceptez nos
+                <a href="{% url 'contionGeneral' %}" class="link-color">Conditions général d'utilisation</a>
+              </p>
+            </div>
+           
+          <button
+        type="submit"
+        class="container mt-3 btn pt-2 pb-2 text-white w-50"
+       >
+        Je postule
+      </button>
+    </form>
+      </div>
+
+    </div>
+    </div>
+{% comment "" %}
+    <form class="form" id="my-form" action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+         <div class="input">
+            <label>Information sur le demandeur :</label>
+
+
+            <div class="input-items">
+              <div class="form__group field mb-2">
+                <input
+                  
+                  placeholder="Name"
+                  class="form__field"
+                  type="input"
+                />
+                <label class="form__label" for="name">Nom complet*</label>
+              </div>
+              {% comment "" %}
+                <input type="text" v-model="name" placeholder="Nom et Prenoms *" name="nomComplet" >
+                <input type="tel" v-model="phone" placeholder="Contact Téléphonique *" >
+
+            </div>
+            <div class="input-items">
+
+                <input type="email" v-model="email" placeholder="Email *" name="email" >
+                <textarea type="text" v-model="message" cols="50" rows="2" placeholder="Détails supplémentaires" name="details"></textarea>
+            </div>
+
+        </div>
+
+        <div class="input">
+            <label for="address">Detail sur la prestation</label>
+            <div class="input-items">
+                <input type="text" placeholder="Adresse *" v-model="address" id="address" name="address" >
+            </div>
+
+            <div class="input-items">
+                <input type="date" v-model="date" name="date">
+                <input type="time" v-model="time" name="heure">
+            </div>
+
+            {% comment "" %} <small>Choisissez votre mode de paiement</small>
+            <div class="input-items">
+                <select  name="paiementType" v-model="money" >
+                    <option value="" selected>Sélectionner le mode de paiement (*)</option>
+                    <option value="OM">Orange money</option>
+                    <option value="MTN">MTN money</option>
+                    <option value="Moov">Flooz money</option>
+                    <option value="Wave">Wave money</option>
+                    <option value="Cash">payer Cash</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input">
+            <label>L'intervention est'elle urgente ?:</label>
+            <div class="input-items">
+                <select  name="paiementType" v-model="take_intervention" >
+                    <option value="" selected>Sélectionner le type de l'intervention (*)</option>
+                    <option value="urgence">En urgence</option>
+                    <option value="RDV">Rendez-vous</option>
+                </select>
+            </div>
+        </div>
+        <div class="input" v-if = "take_intervention">
+            <label>À quelle date et heure doit-il intervenir ? </label>
+            <div class="input-items">
+                <input type="date" v-model="date" name="date">
+                <input type="time" v-model="time" name="heure">
+            </div>
+        </div>
+
+
+        <div class="input">
+            <label>Nombre de professionnel :</label>
+            <small>Choisissez le notre de professionnel </small>
+            <div class="input-items">
+                <select  name="paiementType" v-model="nbr_pro">
+                    <option value="" selected>Choisissez le notre de professionnel (*)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+    {% endcomment %}
+
+        {% comment "" %}
+            <div class="input">
+                <label>Code Promo :</label>
+                <small>Montant de la prestation : <span>300000 FCFA</span></small>
+                <div class="input-items" style="flex-direction: row !important">
+                    <input type="text" placeholder="Ex: ARTNCODEP-000000000000000" style="margin: 0; width: calc(70%);">
+                    <button onclick="return false" class="codepromo">valider</button>
+                </div>
+            </div>
+
+        <div class="input">
+            <label>Concernant le règlement :</label>
+            <small>Choisissez votre mode de paiement</small>
+            <div class="input-items">
+                <select  name="paiementType" v-model="money" >
+                    <option value="" selected>Sélectionner le mode de paiement (*)</option>
+                    <option value="OM">Orange money</option>
+                    <option value="MTN">MTN money</option>
+                    <option value="Moov">Flooz money</option>
+                    <option value="Wave">Wave money</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="condition">
+            <span><span>En cliquant sur <strong>Demander</strong> vous acceptez les conditions
+                générales d'utilisation de nos services. </span></span>
+        </div>
+        <div class="submit" align=center>
+            <button type="submit" @click.prevent='sendData'>
+               <strong>Valider</strong>
+            </button>
+        </div>
+    </form>
+    {% endcomment %}
+</div>
+
+{% comment "" %}###############################{% endcomment %}
+
+{% endblock content %}

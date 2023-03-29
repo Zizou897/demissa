@@ -31,6 +31,9 @@ class Banner(Convention):
     title = models.CharField(max_length=250)
     picture = models.FileField(upload_to='img_banner')
     picturePhone = models.FileField(upload_to='img_banner')
+    pictureContact = models.FileField(upload_to='img_banner_contact')
+    pictureReservation = models.FileField(upload_to='img_banner_reservation')
+    pictureInscription = models.FileField(upload_to='img_banner_inscription')
 
     class Meta:
         verbose_name = "Banner"
@@ -181,3 +184,20 @@ class Referencement(Convention):
 
     def __str__(self):
         return self.title
+
+
+
+class Prestatire(Convention):
+    name = models.CharField(max_length = 250, blank=True, null=True)
+    phone = models.CharField(max_length = 150, blank=True, null=True)
+    email = models.EmailField(max_length=254, blank=True, null=True)
+    service = models.CharField(max_length = 250, blank=True, null=True)
+    date_time = models.CharField(max_length = 250, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Nos Jobbers'
+        verbose_name_plural = 'Nos Jobbers'
+    
+    
+    
+    

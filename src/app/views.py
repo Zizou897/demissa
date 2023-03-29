@@ -1,10 +1,11 @@
 from unicodedata import category
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
+import sweetify
 
 from demissa import settings
 from app.functions import *
@@ -268,7 +269,47 @@ def sitemaps_xml(request):
 
   template_name = 'app/sitemap.xml'
   context = {
-
+    
   }
   return render(request, template_name, context)
 
+
+def inscription(request):
+  get_infos_web = get_info_web({'publish':True})
+  get_banner = get_banners({'publish':True})
+  get_all_under_services = get_all_under_service({'publish':True})
+
+  if request.method == 'POST':
+    name = request.POST.get('name')
+    phone = request.POST.get('phone')
+    email = request.POST.get('email')
+    address = request.POST.get('address')
+    service = request.POST.get('service')
+    date = request.POST.get('date')
+    time = request.POST.get('time')
+    confirm = request.POST.get('confirm')
+    date_time = str(date) + ' ' + str(time)
+    if confirm is not None:
+
+      print("#########################")
+      print(date_time)
+      print(service)
+      prestataire, created = Prestatire.objects.get_or_create(name=name, email=email, phone=phone, service=service, date_time=date)
+      if created:
+        sweetify.success(request, 'Prestataire déjà crée', button='Ok', timer=None)
+      else:
+        #prestataire.save()
+        sweetify.success(request, 'Prestataire crée', button='Ok', timer=None)
+      return redirect("welcome")
+    sweetify.error(request, 'You successfully changed your password', button='Ok', timer=None)
+  template_name = "app/inscription.html"
+  context={
+    'page':{
+      'title': 'De-missa | CGU',
+    },
+    'get_infos_web': get_infos_web,
+    'get_banner': get_banner,
+    'get_all_under_services': get_all_under_services
+  }
+  return render(request, template_name, context)
+  

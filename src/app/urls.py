@@ -12,6 +12,8 @@ urlpatterns = [
     path('postData', postData, name='postData'),
     path('postDataContact', postDataContact, name='postDataContact'),
 
+    path('devenir-prestataire', inscription, name='inscription'),
+
 
     #for sitemap
     path('sitemap.xml', sitemaps_xml ),

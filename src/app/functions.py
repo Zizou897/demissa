@@ -71,3 +71,5 @@ def get_referencement(data=dict()):
     return Referencement.objects.filter(**data).first()
 
 
+def get_all_under_service(data=dict()):
+    return SousService.objects.filter(**data).order_by('order')
