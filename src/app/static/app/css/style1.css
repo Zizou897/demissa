@@ -790,6 +790,7 @@ button[type='submit']{
   }
 
   .form__time{
+    width: 100%;
     padding: 15px;
     border: 1px solid black;
     border-radius: 5px;

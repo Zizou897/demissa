@@ -73,3 +73,9 @@ def get_referencement(data=dict()):
 
 def get_all_under_service(data=dict()):
     return SousService.objects.filter(**data).order_by('order')
+
+#-------------------for Condition------------------------
+
+
+def get_condition_general(data=dict()):
+    return ConditionGeneral.objects.filter(**data).first()

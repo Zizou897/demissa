@@ -134,7 +134,18 @@ class ReferencementAdmin(admin.ModelAdmin):
 
 @admin.register(Prestatire)
 class PrestatireAdmin(admin.ModelAdmin):
-    list_display = ("name", "phone", "email", "date_time", "publish")
+    list_display = ("image_view", "name", "phone", "email",  "publish")
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
+
+
+    def image_view(self, obj):
+        return mark_safe(f'<img src="{obj.profile.url}" style="height:100px; width:150px">')
+    image_view.short_description = "Aperçu des images"
+
+@admin.register(ConditionGeneral)
+class ConditionGeneralAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_add', 'publish')
+
+

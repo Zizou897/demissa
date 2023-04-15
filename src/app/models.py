@@ -191,13 +191,29 @@ class Prestatire(Convention):
     name = models.CharField(max_length = 250, blank=True, null=True)
     phone = models.CharField(max_length = 150, blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
+    address = models.CharField(max_length = 150, blank=True, null=True)
     service = models.CharField(max_length = 250, blank=True, null=True)
-    date_time = models.CharField(max_length = 250, blank=True, null=True)
+    profile = models.FileField(upload_to='img_profile', max_length = 500)
+    recto = models.FileField(upload_to='img_id_card', max_length = 500)
+    verso = models.FileField(upload_to='img_id_card', max_length = 500)
+    
 
     class Meta:
         verbose_name = 'Nos Jobbers'
         verbose_name_plural = 'Nos Jobbers'
     
+    def __str__(self):
+        return self.name
     
+
+class ConditionGeneral(Convention):
+    title = models.CharField(max_length = 150)
+    text = HTMLField()
     
+    class Meta:
+        verbose_name = 'Nos Conditions Generales'
+        verbose_name_plural = 'Nos Conditions Generales'
+    
+    def __str__(self):
+        return self.title
     

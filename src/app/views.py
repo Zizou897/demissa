@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
+import re
 import sweetify
 
 from demissa import settings
@@ -240,6 +241,7 @@ def postDataContact(request):
 def conditionGeneral(request):
 
   get_infos_web = get_info_web({'publish':True})
+  get_condition_generals = get_condition_general({'publish':True})
 
   template_name = "app/condition.html"
   context={
@@ -247,6 +249,7 @@ def conditionGeneral(request):
       'title': 'De-missa | CGU',
     },
     'get_infos_web': get_infos_web,
+    'get_condition_generals': get_condition_generals,
   }
   return render(request, template_name, context)
 
@@ -285,23 +288,61 @@ def inscription(request):
     email = request.POST.get('email')
     address = request.POST.get('address')
     service = request.POST.get('service')
-    date = request.POST.get('date')
-    time = request.POST.get('time')
     confirm = request.POST.get('confirm')
-    date_time = str(date) + ' ' + str(time)
-    if confirm is not None:
+    profile = request.FILES.get('profile')
+    recto = request.FILES.get('recto')
+    verso = request.FILES.get('verso')
+  
 
-      print("#########################")
-      print(date_time)
+    pattern = r'^(01|05|07)\d{8}$'
+    chaine_de_caracteres = '0176543210'
+
+
+    if confirm =="on":
       print(service)
-      prestataire, created = Prestatire.objects.get_or_create(name=name, email=email, phone=phone, service=service, date_time=date)
-      if created:
-        sweetify.success(request, 'Prestataire déjà crée', button='Ok', timer=None)
-      else:
-        #prestataire.save()
-        sweetify.success(request, 'Prestataire crée', button='Ok', timer=None)
-      return redirect("welcome")
-    sweetify.error(request, 'You successfully changed your password', button='Ok', timer=None)
+      
+  
+      if not name or name.isspace() or not address or address.isspace() or not phone or phone.isspace():
+        sweetify.error(request, 'Veuillez remplir tous les champs', button='Ok', timer=None)
+
+      elif not len(phone):
+        sweetify.error(request, 'Votre numéro doit etre de 10 chiffres', button='Ok', timer=None)
+
+      elif profile is None:
+        sweetify.error(request, 'Veuillez selectionner une photo de vous', button='Ok', timer=None)
+      
+      elif service == "1":
+        sweetify.error(request, 'Veuillez choisir un service dans lequel vous souhaitez prester', button='Ok', timer=None)
+        
+      elif (recto and verso) is None:
+        sweetify.error(request, 'Veuillez selectionner le recto et le verso de votre pièce d\'identité', button='Ok', timer=None)
+
+      elif not re.match(pattern, phone):
+        sweetify.error(request, 'Votre numéro doit etre de 10 chiffres et commencer par 01 ou 05 ou 07', button='Ok', timer=None)
+
+      else :
+        prestataire, created = Prestatire.objects.get_or_create(
+          name=name, 
+          email=email, 
+          phone=phone, 
+          address=address, 
+          service=service, 
+          profile=profile,
+          recto=recto, 
+          verso=verso
+          )
+        
+        if created:
+          sweetify.success(request, 'Prestataire crée', button='Ok', timer=None)
+          return redirect("welcome")
+        else:
+          sweetify.success(request, 'Prestataire déjà créé', button='Ok', timer=None)
+          #prestataire.save()
+      
+  
+    else:
+      sweetify.error(request, 'Veuillez cocher Nos conditions générales d\'utilisations', button='Ok', timer=None)
+
   template_name = "app/inscription.html"
   context={
     'page':{

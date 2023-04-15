@@ -24,7 +24,8 @@
         toute les localités d'Abidjan, sans plus tarder remplissez le
         formulaire ci-dessous.
       </p>
-      <div class="formulaire">
+      <small>Les champs comportant un <span>(*)</span> sont obligatoires.</small>
+    <div class="formulaire">
     <form id="" action=" {% url 'inscription' %} " method="POST" enctype="multipart/form-data"> {% csrf_token %}
           <div class="row">
             <h6 class="titre pl-2">Information sur le prestataire</h6>
@@ -37,6 +38,7 @@
               class="form__field"
               type="input"
               name="name"
+              value= "{{current.name}}"
             />
             <label class="form__label" for="name">Nom complet*</label>
           </div>
@@ -60,10 +62,8 @@
             />
             <label class="form__label" for="email">Email</label>
           </div>
-
           <div class="form__group field">
-            <input
-              
+            <input  
               placeholder="Name"
               class="form__field"
               type="text"
@@ -71,13 +71,27 @@
             />
             <label class="form__label" for="name">Lieu de Residence*</label>
           </div>
-
+          <div class="mt-3">
+            <label for="date_heure" class="mb-3">Photo de vous*</label>
+            <div class="row">
+              <div class="col-md-12 bottonm text-center">
+                <input
+                  type="file"
+                  id="start"
+                  name="profile"
+                  value=""
+                  class="form__time"
+                  placeholder="Cool"
+                />
+              </div>
+            </div>
+          </div>
           <div class="row">
             <h6 class="titre mt-3 pl-2">Détail sur la prestation</h6>
           </div>
           <p class="texte-accroch mb-0" style="font-weight:500">
-            Sélectionner au moins trois service dans
-           laquelle vous voulez prester *
+            Sélectionner un service dans
+           lequel vous voulez prester *
           </p>
 
           <div class="form__group field">
@@ -93,56 +107,47 @@
             <h6 class="titre mt-3 pl-2">Autres informations</h6>
           </div>
           <p class="texte-accroch mb-0" style="font-weight:500">
-            Avant de postuler, rassurerez vous que vous aurez un entretient dans notre local
-            à votre date et heure de disponibilité et le dépôt de certaines pièce qui vous seront
-            préciser par un de nos agents
+            Pour que votre identité puisse être validée, nous vous demandons de bien
+            vouloir fournir le recto et le verso de votre pièce d'identité avant de 
+            soumettre votre candidature. 
           </p>
-
+          
           <div class="mt-3">
-            <label for="date_heure" class="mb-3">Date et heure pour l'entretient*</label>
             <div class="row">
               <div class="col-md-6 bottonm text-center">
+                <label for="date_heure" class="mb-3 d-flex justify-content-start">Recto*</label>
                 <input
-                  type="date"
+                  type="file"
                   id="start"
-                  name="date"
+                  name="recto"
                   value=""
-                  min="2023-01-01"
-                  max="2023-12-31"
-                 
                   class="form__time"
-                  
+                  placeholder="Cool"
                 />
               </div>
               <div class="col-md-6 text-center">
+                <label for="date_heure" class="mb-3 d-flex justify-content-start">Verso*</label>
                 <input
-                type="time"
+                type="file"
                 id="appt"
-                name="time"
-                min="08:00"
-                max="17:00"
-               
+                name="verso"
                 class="form__time"
-                
               />
               </div>
             </div>
           </div>
-          
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" name="confirm">
-              <p class="text mt-3">En cliquant sur <strong>Valider</strong>
-                vous acceptez nos
-                <a href="{% url 'contionGeneral' %}" class="link-color">Conditions général d'utilisation</a>
-              </p>
-            </div>
-           
+          <p class="text ml-3 mt-3">
+            <input type="checkbox" class="form-check-input" name="confirm">
+            En cliquant sur <strong>Je postule</strong>
+            vous acceptez nos
+            <a href="{% url 'contionGeneral' %}" class="link-color">Conditions général d'utilisation</a>
+          </p>
           <button
-        type="submit"
-        class="container mt-3 btn pt-2 pb-2 text-white w-50"
-       >
-        Je postule
-      </button>
+            type="submit"
+            class="container mt-3 btn pt-2 pb-2 text-white w-50"
+          >
+            Je postule
+          </button>
     </form>
       </div>
 

@@ -392,7 +392,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           time: '',
           money: '',
           take_intervention: '',
-          confirm: '',
+          confirm: false,
           nbr_pro: '',
       },
       computed:{
@@ -404,7 +404,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       methods:{
 
         sendData(){
-
+          if(this.confirm){
             if(this.name == ''){
               Swal.fire({
                 icon: 'error',
@@ -490,7 +490,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               })
 
             }
-
+          }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: "Veuillez cocher les conditions générales d'utilisations",
+                showConfirmButton: true,
+              })
+          }
 
         }
       },

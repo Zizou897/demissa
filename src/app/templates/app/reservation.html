@@ -118,18 +118,19 @@
               </div>
             </div>
           </div>
-          <p class="text mt-3">
+          <p class="text pl-4 mt-3">
+            <input type="checkbox" class="form-check-input" v-model="confirm" name="confirm">
             En cliquant sur <strong>Valider</strong>
             vous acceptez nos
             <a href="{% url 'contionGeneral' %}" class="link-color">Conditions général d'utilisation</a>
           </p>
           <button
-        type="submit"
-        class="container mt-3 btn pt-2 pb-2 text-white w-50"
-        @click.prevent='sendData'
-      >
-        Valider
-      </button>
+            type="submit"
+            class="container mt-3 btn pt-2 pb-2 text-white w-50"
+            @click.prevent='sendData'
+          >
+            Valider
+          </button>
         </form>
       </div>
 
