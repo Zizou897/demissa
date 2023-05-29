@@ -79,3 +79,12 @@ def get_all_under_service(data=dict()):
 
 def get_condition_general(data=dict()):
     return ConditionGeneral.objects.filter(**data).first()
+
+
+def get_mention_legal(data=dict()):
+    return Mention.objects.filter(**data).first()
+
+
+
+def get_metier(data=dict()):
+    return Metier.objects.filter(**data)

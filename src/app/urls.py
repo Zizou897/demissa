@@ -11,7 +11,7 @@ urlpatterns = [
     path('contact', contact, name='contact'),
     path('postData', postData, name='postData'),
     path('postDataContact', postDataContact, name='postDataContact'),
-
+    path('mention-legale', mentionLegal, name='mentionLegal'),
     path('devenir-prestataire', inscription, name='inscription'),
 
 

@@ -93,16 +93,14 @@
             Sélectionner un service dans
            lequel vous voulez prester *
           </p>
-
           <div class="form__group field">
             <select  name="service" class="form__field">
               <option  value="1" selected>Sélectionner des services (*)</option>
-              {% for service in get_all_under_services %}
-                <option  value="{{service.sous_service_slug}}">{{service.name}}</option>
+              {% for service in get_metiers %}
+                <option  value="{{service.name}}">{{service.name}}</option>
               {% endfor %}
-          </select>
+            </select>
           </div>
-
           <div class="row">
             <h6 class="titre mt-3 pl-2">Autres informations</h6>
           </div>

@@ -9,6 +9,7 @@ from autoslug import AutoSlugField
 
 class Convention(models.Model):
     publish = models.BooleanField(default=True)
+    #date_add = models.DateTimeField(auto_now=False, auto_now_add=True)
     date_add = models.DateField(auto_now=False, auto_now_add=True)
     date_update = models.DateField(auto_now=True, auto_now_add=False)
 
@@ -17,6 +18,7 @@ class Convention(models.Model):
 
 class Web(Convention):
     name = models.CharField(max_length=50)
+    text = models.TextField(blank=True, null=True)
     picture = models.FileField(upload_to='img_web')
     description = models.TextField()
 
@@ -147,6 +149,8 @@ class SousService(Convention):
 class Commandes(Convention):
     name = models.CharField(max_length=250)
     phone = models.CharField(max_length=50)
+    email = models.EmailField(max_length=254, blank=True, null=True)
+    address = models.CharField(max_length = 150, blank=True, null=True)
     service = models.CharField(max_length=50)
 
     class Meta:
@@ -192,10 +196,11 @@ class Prestatire(Convention):
     phone = models.CharField(max_length = 150, blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
     address = models.CharField(max_length = 150, blank=True, null=True)
-    service = models.CharField(max_length = 250, blank=True, null=True)
+    metier = models.CharField(max_length = 250, blank=True, null=True)
     profile = models.FileField(upload_to='img_profile', max_length = 500)
     recto = models.FileField(upload_to='img_id_card', max_length = 500)
     verso = models.FileField(upload_to='img_id_card', max_length = 500)
+    hours = models.TimeField(auto_now=False, auto_now_add=True)
     
 
     class Meta:
@@ -216,4 +221,27 @@ class ConditionGeneral(Convention):
     
     def __str__(self):
         return self.title
+
+
+class Mention(Convention):
+    title = models.CharField(max_length = 150)
+    text = HTMLField()
+    
+    class Meta:
+        verbose_name = 'Mentions Legales'
+        verbose_name_plural = 'Mentions Legales'
+    
+    def __str__(self):
+        return self.title
+
+class Metier(Convention):
+    name = models.CharField(max_length = 150)
+    libele = models.TextField()
+    
+    class Meta:
+        verbose_name = 'Metiers'
+        verbose_name_plural = 'Metiers'
+    
+    def __str__(self):
+        return self.name
     

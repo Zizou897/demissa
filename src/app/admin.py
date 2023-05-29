@@ -134,7 +134,7 @@ class ReferencementAdmin(admin.ModelAdmin):
 
 @admin.register(Prestatire)
 class PrestatireAdmin(admin.ModelAdmin):
-    list_display = ("image_view", "name", "phone", "email",  "publish")
+    list_display = ("image_view", "name", "metier","phone", "email", "date_add", "hours", "publish")
     date_hierarchy = "date_add"
     list_per_page = 10
     list_editable = ["publish"]
@@ -149,3 +149,11 @@ class ConditionGeneralAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_add', 'publish')
 
 
+@admin.register(Mention)
+class MentionAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_add', 'publish')
+
+
+@admin.register(Metier)
+class MetierAdmin(admin.ModelAdmin):
+    list_display = ('name', 'date_add', 'publish')

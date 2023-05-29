@@ -81,7 +81,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
 
     <div class="middle">
-        <span><i class="fa-solid fa-plus"></i></span> <a href="{% url 'service' %}"> Demande un service</a>
+        <span><i class="fa-solid fa-circle-plus fa-lg"></i></span> <a href="{% url 'service' %}"> Demande un service</a>
     </div>
 
     <div class="main-navlink">
@@ -125,10 +125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <a class="active" href="{% url 'service' %}">
                 Demander un service
               </a>
-              <a class="" href="about.html">
-                Suivre une formation
-              </a>
-              <a class="" href="{% url 'service' %}">
+              <a class="" href="{% url 'inscription' %}">
                 Devenir prestataire
               </a>
 
@@ -145,8 +142,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <a class="active" href="{% url 'contionGeneral' %}">
                 Conditions Générales
               </a>
-              <a class="" href="{% url 'service' %}">
-                A propos de Nous
+              <a class="" href="{% url 'mentionLegal' %}">
+                Mention Légales
               </a>
             </div>
           </div>
@@ -195,10 +192,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               DE-MISSA
             </h4>
             <p>
-              DE-MISSA est une entreprise de services à la personne,
-              spécialisée dans les services de proximité à la personne.
-              Notre réseau de professionnels vous apporte le service nécessaire
-              pour tous vos travaux de la vie quotidienne.
+             {{get_infos_web.text}}
             </p>
           </div>
         </div>
@@ -206,9 +200,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </section>
-
-
-
 
   <footer  style="background-color:  rgba(29, 29, 29, 0.945);">
     <div class="container">

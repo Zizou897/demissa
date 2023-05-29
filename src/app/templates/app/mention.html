@@ -1,0 +1,24 @@
+{% extends 'app/layout/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<header class="header">
+    <img src="https://images.pexels.com/photos/3727469/pexels-photo-3727469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+    <div class="header-text">
+       <h1>Mention Légales</h1>
+       <small class="small"><a href="{% url 'welcome' %}" style="color:#178066;">Accueil </a> / CGU</small>
+    </div>
+</header>
+<div class="container-box " >
+    <h4>Mention Légales</h4>
+    <small>Vous trouverez ici nos mentions legales.</small>
+
+    <div>
+        {{get_mention_legals.text | safe}}
+    </div>
+    
+</div>
+
+{% endblock content %}
